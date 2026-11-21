@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "reference_date": "2026-11-21",
+    "project": "Deer Empire NARA (鹿帝国プロジェクト)",
+    "note": "All parameters are extracted from public administrative plans, monitoring reports, and peer-reviewed academic surveys. Unverified numbers are never invented."
+  },
+  "nara_park_aigokai": {
+    "source": "一般財団法人 奈良の鹿愛護会 毎年7月早朝目視頭数調査",
+    "url": "https://www.naradeer.com/",
+    "evidence_grade": "A",
+    "survey_area": "奈良公園及びその周辺平坦部（保護地区A・B中心域）",
+    "latest_year": 2026,
+    "latest_date": "2026-07-15/16",
+    "latest_total": 1687,
+    "latest_breakdown": {
+      "male": 411,
+      "female": 990,
+      "fawn": 286
+    },
+    "timeseries": [
+      {"year": 1945, "total": 79, "male": null, "female": null, "fawn": null, "note": "終戦直後の歴史的最小値"},
+      {"year": 1955, "total": 378, "male": null, "female": null, "fawn": null, "note": "国の天然記念物指定(1957)直前期"},
+      {"year": 1975, "total": 925, "male": null, "female": null, "fawn": null, "note": "高度成長期以降の回復"},
+      {"year": 1995, "total": 1192, "male": null, "female": null, "fawn": null, "note": "安定期"},
+      {"year": 2005, "total": 1166, "male": null, "female": null, "fawn": null, "note": "安定期"},
+      {"year": 2010, "total": 1096, "male": 197, "female": 713, "fawn": 186, "note": ""},
+      {"year": 2015, "total": 1191, "male": 204, "female": 788, "fawn": 199, "note": ""},
+      {"year": 2016, "total": 1180, "male": 236, "female": 715, "fawn": 229, "note": ""},
+      {"year": 2017, "total": 1226, "male": 261, "female": 731, "fawn": 234, "note": ""},
+      {"year": 2018, "total": 1360, "male": 355, "female": 767, "fawn": 238, "note": ""},
+      {"year": 2019, "total": 1388, "male": 357, "female": 756, "fawn": 275, "note": "コロナ禍前ピーク"},
+      {"year": 2020, "total": 1286, "male": 224, "female": 808, "fawn": 254, "note": "コロナ禍による観光客減少"},
+      {"year": 2021, "total": 1105, "male": 217, "female": 806, "fawn": 82, "note": "子鹿急減"},
+      {"year": 2022, "total": 1182, "male": 204, "female": 747, "fawn": 231, "note": "増加に転じる"},
+      {"year": 2023, "total": 1233, "male": 286, "female": 770, "fawn": 177, "note": ""},
+      {"year": 2024, "total": 1325, "male": 313, "female": 798, "fawn": 214, "note": ""},
+      {"year": 2025, "total": 1465, "male": 315, "female": 816, "fawn": 334, "note": "過去最多更新"},
+      {"year": 2026, "total": 1687, "male": 411, "female": 990, "fawn": 286, "note": "2年連続過去最多更新"}
+    ]
+  },
+  "nara_city_management_plan": {
+    "source": "奈良市ニホンジカ第二種特定鳥獣管理計画（第2次：令和4年4月～令和9年3月）及び令和5年度・令和7年度モニタリング資料",
+    "url": "https://www.pref.nara.jp/11624.htm",
+    "evidence_grade": "B",
+    "zones": {
+      "A_B_protection": "重点保護地区・保護地区（奈良公園・春日山原始林周辺：愛護会調査対象と整合、捕獲禁止）",
+      "C_buffer": "緩衝地区（原則殺処分なし・生け捕り等。独立頭数データ非公表のため独自仮定加算は行わず、A/BとDの合算のみ計上）",
+      "D_management": {
+        "area_km2": 184.0,
+        "target_subareas": ["田原", "精華", "東市", "帯解", "鼓阪", "東里", "狭川", "大柳生", "柳生"],
+        "annual_capture_cap": 450,
+        "fy2017_initial_permit_cap": 120,
+        "density_timeseries_per_km2": [
+          {"fy": 2016, "mean": 13.6, "sd": 32.3},
+          {"fy": 2017, "mean": 9.4, "sd": 18.0},
+          {"fy": 2018, "mean": 22.8, "sd": 35.7},
+          {"fy": 2019, "mean": 11.4, "sd": 14.8},
+          {"fy": 2021, "mean": 11.7, "sd": 12.6},
+          {"fy": 2023, "mean": 15.5, "sd": 16.8}
+        ]
+      }
+    }
+  },
+  "nara_prefecture_management_plan": {
+    "source": "奈良県ニホンジカ第二種特定鳥獣管理計画（第7次：令和4年4月～令和9年3月）及び奈良県自然環境保全審議会鳥獣部会資料",
+    "url": "https://www.pref.nara.jp/33754.htm",
+    "fy2020_official_median_estimate_head": 65049,
+    "target_population_head": 58000,
+    "annual_capture_target_head": 16000,
+    "prior_plan_capture_target_head": 10000,
+    "historical_reference_estimate_circa_2012": 47000,
+    "actual_capture_records": [
+      {"fy": 2000, "fiscal_label": "平成12年度", "captured": 1945},
+      {"fy": 2023, "fiscal_label": "令和5年度", "captured": 10296}
+    ],
+    "regional_blocks": ["北西部", "東部", "南部"],
+    "estimation_method_official": "糞塊法（糞粒法）＋捕獲実績（CPUE）を用いた階層ベイズモデル法"
+  },
+  "academic_and_ministry_density_benchmarks": {
+    "rest_model_takatori_plantation": {
+      "municipality": "高取町",
+      "jis_code": "29401",
+      "forest_type": "スギ・ヒノキ人工林",
+      "density_per_km2": 30.15,
+      "fecal_pellet_index_per_km": 46.49,
+      "source": "奈良県森林技術センター・日本生態学会発表資料(RESTモデル)"
+    },
+    "rest_model_nosegawa_natural": {
+      "municipality": "野迫川村",
+      "jis_code": "29447",
+      "forest_type": "ブナ・ミズナラ天然林",
+      "density_per_km2": 14.07,
+      "fecal_pellet_index_per_km": 0.0,
+      "source": "奈良県森林技術センター・日本生態学会発表資料(RESTモデル)"
+    },
+    "odaigahara_ministry_of_environment": {
+      "area": "大台ヶ原（主に上北山村・川上村域）",
+      "peak_density_fy2001": 35.8,
+      "emergency_zone_peak": 48.8,
+      "recent_density_fy2016": 5.6,
+      "target_density_max": 5.0,
+      "recent_range": "3〜10 頭/km²",
+      "source": "環境省 大台ヶ原ニホンジカ第二種特定鳥獣管理計画"
+    },
+    "ministry_of_environment_national_context": {
+      "honshu_south_median_fy2024": 2360000,
+      "mesh_resolution": "5km地域メッシュ",
+      "note": "環境省は都道府県別推定生息数の公式報道発表を行っていない"
+    }
+  },
+  "human_population_timeseries_nara": [
+    {"year": 1980, "population": 1209365, "source": "国勢調査"},
+    {"year": 1990, "population": 1375481, "source": "国勢調査"},
+    {"year": 2000, "population": 1442795, "source": "国勢調査（ピーク）"},
+    {"year": 2005, "population": 1421310, "source": "国勢調査"},
+    {"year": 2010, "population": 1400728, "source": "国勢調査"},
+    {"year": 2015, "population": 1364316, "source": "国勢調査"},
+    {"year": 2020, "population": 1324473, "source": "国勢調査"},
+    {"year": 2025, "population": 1268181, "source": "令和7年国勢調査確定値"},
+    {"year": 2026, "population": 1263770, "source": "奈良県推計人口調査(2026-10-01)"}
+  ]
+}

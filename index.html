@@ -1,12 +1,766 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=dashboard/">
-  <title>DEER EMPIRE NARA — 鹿帝国勢力図</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEER EMPIRE NARA — 鹿帝国プロジェクト 統合ポータル（3D版 / 2D元版）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep: #060911;
+      --bg-panel: rgba(13, 20, 34, 0.84);
+      --bg-card: rgba(18, 28, 46, 0.9);
+      --border-subtle: rgba(148, 163, 184, 0.18);
+      --border-gold: rgba(245, 158, 11, 0.48);
+      --border-cyan: rgba(56, 189, 248, 0.45);
+      --text-main: #f1f5f9;
+      --text-soft: #cbd5e1;
+      --text-muted: #94a3b8;
+      --gold: #f59e0b;
+      --gold-lt: #fde68a;
+      --cyan: #38bdf8;
+      --emerald: #10b981;
+      --font-sans: "Inter", "Noto Sans JP", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+    a { color: inherit; }
+
+    /* WebGL 3D Hero Backdrop */
+    #hero3dBg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.72;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(245, 158, 11, 0.14), transparent 44%),
+        radial-gradient(circle at 80% 72%, rgba(56, 189, 248, 0.12), transparent 46%),
+        linear-gradient(180deg, #060911 0%, #090f1d 100%);
+    }
+
+    .portal-shell {
+      position: relative;
+      z-index: 2;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 28px 24px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Top Utility Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 10px 16px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+    }
+    .top-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 13.5px;
+      letter-spacing: 0.05em;
+      color: var(--gold-lt);
+    }
+    .top-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .chip-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-soft);
+      transition: all 0.15s ease;
+    }
+    .chip-link:hover {
+      border-color: var(--gold);
+      color: #fff;
+      background: rgba(245, 158, 11, 0.14);
+    }
+
+    /* Hero Banner */
+    .hero {
+      padding: 36px 34px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(13, 20, 35, 0.88), rgba(15, 25, 44, 0.72));
+      border: 1px solid var(--border-gold);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-lt);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: clamp(24px, 3.05vw, 37px);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 14px;
+      background: linear-gradient(92deg, #ffffff 0%, #fde68a 48%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-lead {
+      font-size: 15px;
+      color: var(--text-soft);
+      max-width: 680px;
+      margin-bottom: 22px;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-primary-3d {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 22px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      color: #070b12;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 55%, #38bdf8 140%);
+      box-shadow: 0 8px 28px rgba(245, 158, 11, 0.35);
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .btn-primary-3d:hover { transform: translateY(-2px); filter: brightness(1.07); }
+    .btn-secondary-2d {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-cyan);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn-secondary-2d:hover {
+      transform: translateY(-2px);
+      background: rgba(56, 189, 248, 0.15);
+    }
+
+    /* Hero KPI Column */
+    .hero-kpis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .hkpi {
+      background: rgba(8, 13, 24, 0.82);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 13px 14px;
+    }
+    .hkpi.gold { border-color: var(--border-gold); }
+    .hkpi label { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
+    .hkpi .val { font-size: 22px; font-weight: 800; line-height: 1.15; }
+    .hkpi small { display: block; font-size: 10.5px; color: var(--text-muted); margin-top: 4px; }
+
+    /* Edition Comparison Section */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .section-head h2 {
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+    }
+    .section-head span {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .editions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .edition-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+    .edition-card:hover { transform: translateY(-3px); }
+    .edition-card.card-3d {
+      border-color: var(--border-gold);
+      background: linear-gradient(155deg, rgba(245, 158, 11, 0.1), rgba(13, 20, 34, 0.92) 55%);
+      box-shadow: 0 14px 40px rgba(245, 158, 11, 0.12);
+    }
+    .edition-card.card-2d {
+      border-color: var(--border-cyan);
+      background: linear-gradient(155deg, rgba(56, 189, 248, 0.08), rgba(13, 20, 34, 0.92) 55%);
+    }
+    .ed-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .ed-badge {
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .badge-3d { background: rgba(245, 158, 11, 0.22); color: var(--gold-lt); border: 1px solid var(--border-gold); }
+    .badge-2d { background: rgba(56, 189, 248, 0.18); color: #7dd3fc; border: 1px solid var(--border-cyan); }
+    .ed-path { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+
+    .edition-card h3 {
+      font-size: 21px;
+      font-weight: 900;
+      margin: 8px 0 6px;
+    }
+    .edition-card p {
+      font-size: 13.5px;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+    .feature-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px 12px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+    .feature-list li::before {
+      content: "▸ ";
+      color: var(--gold);
+      font-weight: 800;
+    }
+    .card-2d .feature-list li::before { color: var(--cyan); }
+
+    .ed-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+      border-top: 1px solid rgba(148, 163, 184, 0.12);
+    }
+    .btn-ed {
+      flex: 1;
+      min-width: 170px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .btn-ed-gold { background: linear-gradient(135deg, #f59e0b, #d97706); color: #070b12; }
+    .btn-ed-gold:hover { filter: brightness(1.1); }
+    .btn-ed-cyan { background: linear-gradient(135deg, #38bdf8, #2563eb); color: #ffffff; }
+    .btn-ed-cyan:hover { filter: brightness(1.1); }
+    .btn-ed-ghost {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+    .btn-ed-ghost:hover { border-color: var(--gold); }
+
+    /* Telemetry & Docs Archive */
+    .telemetry-strip {
+      background: var(--bg-panel);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      border-radius: 16px;
+      padding: 20px 22px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tel-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .tel-box {
+      background: rgba(8, 13, 24, 0.78);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .tel-box label { display: block; font-size: 10.5px; color: var(--text-muted); }
+    .tel-box .tv { font-size: 17px; font-weight: 800; color: #34d399; margin-top: 2px; }
+    .tel-box small { display: block; font-size: 10px; color: var(--text-muted); }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .doc-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+    }
+    .doc-card h4 { font-size: 14.5px; font-weight: 800; color: #fff; }
+    .doc-card p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    .doc-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .doc-btn {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 7px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--gold-lt);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .doc-btn:hover { border-color: var(--gold); background: rgba(245, 158, 11, 0.15); }
+
+    /* Markdown Doc Preview Modal */
+    .doc-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(4, 7, 14, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .doc-modal.open { display: flex; }
+    .doc-modal-card {
+      width: 100%;
+      max-width: 920px;
+      max-height: 86vh;
+      background: #0d1422;
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    }
+    .doc-modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: rgba(18, 28, 46, 0.95);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .doc-modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-soft);
+      white-space: pre-wrap;
+      font-family: var(--font-sans);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 18px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    @media (max-width: 1020px) {
+      .hero { grid-template-columns: 1fr; padding: 26px 20px; }
+      .editions-grid, .docs-grid { grid-template-columns: 1fr; }
+      .tel-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .portal-shell { padding: 14px 14px 40px; }
+      .feature-list { grid-template-columns: 1fr; }
+      .hero-kpis, .tel-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <a href="dashboard/">鹿帝国勢力図を開く</a>
+  <div id="hero3dBg" aria-hidden="true"></div>
+
+  <div class="portal-shell">
+    <!-- Top Utility Navigation -->
+    <header class="top-bar">
+      <div class="top-brand">
+        <span>👑 DEER EMPIRE NARA</span>
+        <span style="color:var(--text-muted);font-weight:500">// 鹿帝国プロジェクト 統合ポータル</span>
+      </div>
+      <nav class="top-links" aria-label="主要ページナビゲーション">
+        <a href="3d/dashboard/index.html" class="chip-link" style="border-color:var(--border-gold);color:var(--gold-lt)">🧊 3Dダッシュボード</a>
+        <a href="2d/dashboard/index.html" class="chip-link" style="border-color:var(--border-cyan);color:#7dd3fc">🗺️ 2D元版ダッシュボード</a>
+        <a href="3d/slides/index.html" class="chip-link">📽️ VCスライド (12枚)</a>
+        <a href="https://github.com/kentaro-oishi-c3creators/deer-empire-nara" target="_blank" rel="noopener" class="chip-link">📦 GitHub Repo ↗</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <div class="eyebrow">NARA PREFECTURE 39 MUNICIPALITIES // 3D WEBGL + 2D GIS PORTAL</div>
+        <h1>奈良県は、本当に人間の県なのか。<br>それとも鹿の帝国なのか？</h1>
+        <p class="hero-lead">
+          奈良県全39市町村（12市・15町・12村）の人間人口・森林センサス・ニホンジカ推定生息数を公的統計とRed Team監査で統合。
+          <strong>「WebGL 3D立体勢力図版（3D版）」</strong>と、元の構成を1階層下へ完全保存した<strong>「2Dオリジナル版（3Dなし版）」</strong>、および海外VC向けスライド・AI実行ログ実測記録へここからアクセスできます。
+        </p>
+        <div class="hero-cta-row">
+          <a href="3d/dashboard/index.html" class="btn-primary-3d">🧊 3D立体版ダッシュボードを開く →</a>
+          <a href="2d/dashboard/index.html" class="btn-secondary-2d">🗺️ 2Dオリジナル版（元構成）を開く →</a>
+          <a href="3d/slides/index.html" class="btn-secondary-2d" style="border-color:rgba(16,185,129,0.5)">📽️ 海外VC向けスライド (12枚)</a>
+        </div>
+      </div>
+
+      <div class="hero-kpis">
+        <div class="hkpi">
+          <label>👥 奈良県 人間総人口 (区分A)</label>
+          <div class="val mono" style="color:#60a5fa">1,263,770 <small style="display:inline">人</small></div>
+          <small>2026-10-01推計 / 北西部等に99.2%集住</small>
+        </div>
+        <div class="hkpi">
+          <label>🦌 鹿の推定生息数 (標準モデル)</label>
+          <div class="val mono" style="color:#34d399">62,517 <small style="display:inline">頭</small></div>
+          <small>奈良公園1,687(A) ＋ 野生推定60,830</small>
+        </div>
+        <div class="hkpi gold">
+          <label>👑 鹿帝国領 面積シェア</label>
+          <div class="val mono" style="color:#fbbf24">53.8% <small style="display:inline">(10村)</small></div>
+          <small>1,986.5 km² / 保守下限でも9村・52.5%</small>
+        </div>
+        <div class="hkpi gold">
+          <label>🏆 最強鹿勢力：上北山村</label>
+          <div class="val mono" style="color:#fbbf24">1,395.6%</div>
+          <small>人間362人 vs 鹿推定5,052頭（約14倍）</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 Primary Editions: 3D vs 2D Original -->
+    <div class="section-head">
+      <h2>🧭 ダッシュボード エディション選択（3D版 ／ 2D元構成保存版）</h2>
+      <span>データ・計算ロジックは完全同一。元の構成は <code class="mono">/2d/</code> に無改変保存されています。</span>
+    </div>
+
+    <section class="editions-grid">
+      <!-- 3D Edition -->
+      <article class="edition-card card-3d">
+        <div>
+          <div class="ed-badge-row">
+            <span class="ed-badge badge-3d">NEW // 3D SPATIAL EDITION（3Dあり版）</span>
+            <span class="ed-path">/3d/dashboard/</span>
+          </div>
+          <h3>🧊 WebGL 3D 立体勢力図ダッシュボード</h3>
+          <p>
+            Three.js により39市町村をリアルタイム3D立体ポリゴン化。「頭数は人間の県（盆地タワー）」と「面積の過半は鹿帝国（奥吉野の黄金山岳ピーク）」という空間二重構造を立体反転で直感体験できます。
+          </p>
+          <ul class="feature-list">
+            <li>39市町村 3D立体押出プリズム</li>
+            <li>人間(水色) vs 鹿(金) 3Dツインタワー</li>
+            <li>🧊3D / 🌗3D+2D並列 / 🗺️2D切替</li>
+            <li>⚡ 「人間vs鹿」3D高さ反転デモ</li>
+            <li>171区画 5km投影密度3Dメッシュ</li>
+            <li>3D空間相関キューブ（100%閾値平面付）</li>
+            <li>奥吉野・奈良盆地・奈良公園カメラ視点</li>
+            <li>区分D（未判定）平坦表示で誠実性維持</li>
+          </ul>
+        </div>
+        <div class="ed-actions">
+          <a href="3d/dashboard/index.html" class="btn-ed btn-ed-gold">🧊 3Dダッシュボードを開く →</a>
+          <a href="3d/slides/index.html" class="btn-ed btn-ed-ghost">📽️ 3D版スライド (12枚)</a>
+        </div>
+      </article>
+
+      <!-- 2D Classic Edition -->
+      <article class="edition-card card-2d">
+        <div>
+          <div class="ed-badge-row">
+            <span class="ed-badge badge-2d">PRESERVED // 2D CLASSIC EDITION（3Dなし版）</span>
+            <span class="ed-path">/2d/dashboard/</span>
+          </div>
+          <h3>🗺️ 2D 精密GIS オリジナル保存版</h3>
+          <p>
+            初期リリース時（コミット <code class="mono">d7c0867</code>）の2D Leaflet＋国土地理院タイル版を、元の構成のままフォルダ階層を1つ下げて完全保存。軽量で軽快な2D地図探索とオリジナルUIを比較検証できます。
+          </p>
+          <ul class="feature-list">
+            <li>元構成（dashboard / slides / docs）維持</li>
+            <li>国土地理院 淡色/ダーク/無地モード</li>
+            <li>7種レイヤー＆4シナリオ切替</li>
+            <li>What-If 3ブロック密度スライダー</li>
+            <li>SVG斜線ハッチング（区分D未判定）</li>
+            <li>Chart.js 4種クロス＆時系列チャート</li>
+            <li>5種デザインテーマ（司令室/和紙/雪 等）</li>
+            <li>全39市町村テーブル＆CSV出力</li>
+          </ul>
+        </div>
+        <div class="ed-actions">
+          <a href="2d/dashboard/index.html" class="btn-ed btn-ed-cyan">🗺️ 2Dオリジナル版を開く →</a>
+          <a href="2d/slides/index.html" class="btn-ed btn-ed-ghost">📽️ 2D版スライド (12枚)</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Antigravity Orchestrator实測セクション -->
+    <section class="telemetry-strip">
+      <div class="section-head">
+        <h2>🤖 Antigravity Orchestrator 実測記録（鹿帝国 制作セッション分析）</h2>
+        <span>対象：Turn 1（調査・ダッシュボード）＋ Turn 2（VCスライド）全5会話の実測ログより（分析Turn 3除外）</span>
+      </div>
+      <div class="tel-grid">
+        <div class="tel-box">
+          <label>実行エージェント・呼出回数</label>
+          <div class="tv mono">5会話 / 230回</div>
+          <small>親125(P:23/E:102)＋サブ4体 105回</small>
+        </div>
+        <div class="tel-box">
+          <label>累積総処理トークン</label>
+          <div class="tv mono">4,792万 tokens</div>
+          <small>非キャッシュ入力 369万 / 出力 39.4万</small>
+        </div>
+        <div class="tel-box">
+          <label>暗黙キャッシュヒット率</label>
+          <div class="tv mono">92.2%</div>
+          <small>読込 4,383万（未適用仮想 $74.30→$12台）</small>
+        </div>
+        <div class="tel-box">
+          <label>実稼働時間（待機除く）</label>
+          <div class="tv mono">67分30秒+</div>
+          <small>T1: 44m36s+ / T2: 22m54s+</small>
+        </div>
+        <div class="tel-box">
+          <label>API換算コスト試算 (仮定)</label>
+          <div class="tv mono">$12.07〜$12.24</div>
+          <small>2026-11-21導入単価基準（レンジ $11.67–$18.63）</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research & Audit Docs Archive -->
+    <div class="section-head">
+      <h2>📚 研究ノート・Red Team監査・実測レポート・一次データ</h2>
+      <span>Google Drive記録およびリポジトリ全ドキュメント</span>
+    </div>
+
+    <section class="docs-grid">
+      <article class="doc-card">
+        <div>
+          <h4>📄 研究記録 ＆ AI活用統合ノート</h4>
+          <p>「遊び心ある問い（Childlike exploration）」から39市町村GIS分析、ORIGAMI / AI Cost Optimizer との接続考察までをまとめた統合記録。</p>
+        </div>
+        <div class="doc-links">
+          <button type="button" class="doc-btn" data-doc="docs/research-record.md" data-title="研究記録とAntigravity Orchestrator実測分析">👁️ ブラウザで読む</button>
+          <a href="https://github.com/kentaro-oishi-c3creators/deer-empire-nara/blob/main/docs/research-record.md" target="_blank" rel="noopener" class="doc-btn">GitHub ↗</a>
+        </div>
+      </article>
+
+      <article class="doc-card">
+        <div>
+          <h4>⚙️ Antigravity 利用状況分析原本</h4>
+          <p>Planner(Argon) / Executor(Hydrogen) 分離証拠、サブエージェント4体の実測トークン、エラー再試行、Hooks自動計測アーキテクチャ提案。</p>
+        </div>
+        <div class="doc-links">
+          <button type="button" class="doc-btn" data-doc="docs/antigravity-usage-report.md" data-title="Antigravity 利用状況分析レポート">👁️ ブラウザで読む</button>
+          <a href="https://github.com/kentaro-oishi-c3creators/deer-empire-nara/blob/main/docs/antigravity-usage-report.md" target="_blank" rel="noopener" class="doc-btn">GitHub ↗</a>
+        </div>
+      </article>
+
+      <article class="doc-card">
+        <div>
+          <h4>🛡️ Red Team 8項目監査・統計出典</h4>
+          <p>二重計上排除、実測/推定区分(A/B/C/D)、36/39階級不変感度検証、全39市町村CSVマスターおよび再構築Pythonスクリプト。</p>
+        </div>
+        <div class="doc-links">
+          <button type="button" class="doc-btn" data-doc="docs/red-team-review.md" data-title="Red Team 8項目監査レポート">👁️ Red Team</button>
+          <button type="button" class="doc-btn" data-doc="docs/sources.md" data-title="出典・データ来歴・ライセンス">👁️ 出典一覧</button>
+          <a href="https://github.com/kentaro-oishi-c3creators/deer-empire-nara/blob/main/data/processed/municipalities_master.csv" target="_blank" rel="noopener" class="doc-btn">CSV ↗</a>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <div>DEER EMPIRE NARA — 奈良県39市町村 鹿帝国プロジェクト | GitHub Pages 公開ポータル</div>
+      <div>※本ページのAPI換算コストはログ数値と外部公開単価を用いた仮定試算であり、実請求額とは異なります。「鹿帝国領」は演出名称です。</div>
+    </footer>
+  </div>
+
+  <!-- Inline Document Reader Modal -->
+  <div class="doc-modal" id="docModal" role="dialog" aria-modal="true" aria-labelledby="docModalTitle">
+    <div class="doc-modal-card">
+      <div class="doc-modal-head">
+        <strong id="docModalTitle" style="color:var(--gold-lt)">ドキュメント閲覧</strong>
+        <button type="button" class="chip-link" id="btnCloseDocModal">✕ 閉じる</button>
+      </div>
+      <pre class="doc-modal-body" id="docModalBody">読み込み中...</pre>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin=""></script>
+  <script src="3d/dashboard/data_bundle.js"></script>
+  <script>
+    // Subtle 3D Topographical Hero Backdrop using Three.js + Nara 39 Municipalities GeoJSON
+    (() => {
+      const host = document.getElementById("hero3dBg");
+      if (typeof THREE !== "undefined" && window.DEER_EMPIRE_DATA && host) {
+        try {
+          const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          host.appendChild(renderer.domElement);
+
+          const scene = new THREE.Scene();
+          const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 120);
+          scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+          const dl = new THREE.DirectionalLight(0xfbbf24, 0.85);
+          dl.position.set(10, 18, 12);
+          scene.add(dl);
+
+          const raw = window.DEER_EMPIRE_DATA.geojson;
+          const byCode = Object.fromEntries(window.DEER_EMPIRE_DATA.municipalities.map((m) => [m.jis_code, m]));
+          const group = new THREE.Group();
+          const cLon = 135.86, cLat = 34.36, cosLat = Math.cos((cLat * Math.PI) / 180), scale = 15.5;
+
+          raw.features.forEach((f) => {
+            const m = byCode[f.properties.jis_code] || {};
+            const shape = new THREE.Shape();
+            f.geometry.coordinates[0].forEach(([lon, lat], i) => {
+              const x = (lon - cLon) * cosLat * scale;
+              const y = (lat - cLat) * scale;
+              if (i === 0) shape.moveTo(x, y);
+              else shape.lineTo(x, y);
+            });
+            const h = m.deer_human_ratio_pct == null ? 0.12 : 0.25 + Math.log10(m.deer_human_ratio_pct + 1) * 1.1;
+            const geo = new THREE.ExtrudeGeometry(shape, { depth: h, bevelEnabled: false });
+            const col = m.dominance_code === "EMPIRE" ? 0xf59e0b : m.evidence_grade === "D" ? 0x334155 : 0x2563eb;
+            const mat = new THREE.MeshPhongMaterial({ color: col, transparent: true, opacity: 0.34, wireframe: false });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.rotation.x = -Math.PI / 2;
+            group.add(mesh);
+
+            const wire = new THREE.LineLoop(
+              new THREE.BufferGeometry().setFromPoints(
+                f.geometry.coordinates[0].map(([lon, lat]) => new THREE.Vector3((lon - cLon) * cosLat * scale, h + 0.02, -(lat - cLat) * scale))
+              ),
+              new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: 0.45 })
+            );
+            group.add(wire);
+          });
+
+          scene.add(group);
+          camera.position.set(4, 11.5, 16);
+          camera.lookAt(0, 0.5, 0);
+
+          let t = 0;
+          function loop() {
+            requestAnimationFrame(loop);
+            t += 0.0022;
+            group.rotation.y = t;
+            renderer.render(scene, camera);
+          }
+          loop();
+
+          window.addEventListener("resize", () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+          });
+        } catch (e) {}
+      }
+
+      // Inline Document Modal Reader
+      const modal = document.getElementById("docModal");
+      const mTitle = document.getElementById("docModalTitle");
+      const mBody = document.getElementById("docModalBody");
+      document.querySelectorAll("[data-doc]").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const path = btn.getAttribute("data-doc");
+          mTitle.textContent = btn.getAttribute("data-title") || path;
+          mBody.textContent = "読み込み中...";
+          modal.classList.add("open");
+          try {
+            const res = await fetch(path);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            mBody.textContent = await res.text();
+          } catch (err) {
+            mBody.textContent = `ファイル読み込みに失敗しました (${err.message})。GitHubリンクよりご覧ください。`;
+          }
+        });
+      });
+      document.getElementById("btnCloseDocModal").addEventListener("click", () => modal.classList.remove("open"));
+      modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("open"); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") modal.classList.remove("open"); });
+    })();
+  </script>
 </body>
 </html>

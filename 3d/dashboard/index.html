@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEER EMPIRE NARA [3D Edition] — 鹿帝国勢力図 | WebGL 3D空間生態ダッシュボード</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="themes.css" />
+  <link rel="stylesheet" href="styles3d.css" />
+  <script>try{var t=localStorage.getItem("deer-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+  <!-- Subtle Topographical Background Pattern -->
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Top Strategic Command Header -->
+  <header class="cmd-header">
+    <div class="cmd-header-inner">
+      <div class="brand-block">
+        <div class="brand-emblem" aria-hidden="true">
+          <span class="emblem-crown">👑</span>
+          <span class="emblem-deer">🦌</span>
+        </div>
+        <div>
+          <div class="brand-eyebrow">STRATEGIC 3D GEO-ECOLOGICAL COMMAND // NARA 39 MUNICIPALITIES (WEBGL 3D)</div>
+          <h1 class="brand-title">DEER EMPIRE NARA <span class="title-sep">—</span> <span class="title-jp">鹿帝国勢力図 3D</span></h1>
+        </div>
+      </div>
+      <div class="header-badges">
+        <div class="meta-pill">
+          <span class="pill-label">人間人口基準</span>
+          <span class="pill-val">2026-10-01</span>
+        </div>
+        <div class="meta-pill">
+          <span class="pill-label">森林センサス</span>
+          <span class="pill-val">2020-02-01</span>
+        </div>
+        <div class="meta-pill">
+          <span class="pill-label">鹿調査基準</span>
+          <span class="pill-val">2022–2026 混合</span>
+        </div>
+        <a href="../../index.html" class="btn-outline" style="text-decoration:none" title="統合親ポータルへ戻る">🏛️ 親ポータル</a>
+        <a href="../../2d/dashboard/index.html" class="btn-outline" style="text-decoration:none" title="3Dなし・元の2Dオリジナル版を開く">🗺️ 2D元版</a>
+        <a href="../slides/index.html" class="btn-gold" style="text-decoration:none">📽️ VC向けスライド</a>
+        <div class="theme-switch" id="themeSwitch" role="radiogroup" aria-label="デザインテーマ"></div>
+        <button id="btnResetAll" class="btn-outline" title="表示・シナリオを初期状態に戻す">↺ リセット</button>
+      </div>
+    </div>
+
+    <!-- Dual Balance Bar: Population Share vs Territorial Area Share -->
+    <div class="balance-strip">
+      <div class="balance-item">
+        <div class="balance-head">
+          <span>👥 頭数バランス（奈良県全体：<strong id="balPopSummary">人間 1,263,770人 vs 鹿推定 62,637頭</strong>）</span>
+          <span id="balRatioBadge" class="mono accent-blue">人間 95.3% / 鹿 4.7%</span>
+        </div>
+        <div class="dual-bar">
+          <div id="barHumanShare" class="bar-seg bar-human" style="width: 95.3%"></div>
+          <div id="barDeerShare" class="bar-seg bar-deer" style="width: 4.7%"></div>
+        </div>
+      </div>
+      <div class="balance-item">
+        <div class="balance-head">
+          <span>🗺️ 県土支配バランス（<strong id="balAreaSummary">👑鹿帝国領 10市町村が県面積の 53.8% を占拠</strong>）</span>
+          <span id="balEmpireAreaBadge" class="mono accent-gold">鹿帝国領 53.8%</span>
+        </div>
+        <div class="dual-bar multi-tier">
+          <div id="barAreaEmpire" class="bar-seg tier-empire" title="👑 鹿帝国領"></div>
+          <div id="barAreaDeerDom" class="bar-seg tier-deer-dom" title="🦌 鹿優勢地域"></div>
+          <div id="barAreaContested" class="bar-seg tier-contested" title="⚔️ 勢力均衡地域"></div>
+          <div id="barAreaHumanDom" class="bar-seg tier-human-dom" title="🏙️ 人間優勢地域"></div>
+          <div id="barAreaUndet" class="bar-seg tier-undet" title="❓ 未判定地域"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-shell">
+    <!-- KPI Command Bar -->
+    <section class="kpi-grid" aria-label="主要KPI指標">
+      <article class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">奈良県 人間総人口</span>
+          <span class="grade-chip grade-a">区分A 実統計</span>
+        </div>
+        <div class="kpi-value mono" id="kpiHumanPop">1,263,770<span class="kpi-unit">人</span></div>
+        <div class="kpi-sub">令和8年10月1日推計（2020年比 -4.58%）</div>
+      </article>
+
+      <article class="kpi-card kpi-deer">
+        <div class="kpi-top">
+          <span class="kpi-label">鹿の推定生息数</span>
+          <span class="grade-chip grade-bc" id="kpiDeerGrade">区分A+B+C</span>
+        </div>
+        <div class="kpi-value mono" id="kpiDeerTotal">62,517<span class="kpi-unit">頭</span></div>
+        <div class="kpi-sub" id="kpiDeerSub">公園実測 1,687頭 + 野生推定 60,830頭（目標 58,000頭）</div>
+      </article>
+
+      <article class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">県全体 鹿人比率</span>
+          <span class="grade-chip grade-bc">シナリオ連動</span>
+        </div>
+        <div class="kpi-value mono" id="kpiPrefRatio">4.95<span class="kpi-unit">%</span></div>
+        <div class="kpi-sub" id="kpiPrefRatioSub">レンジ 3.63%〜6.43%（約20人に1頭）</div>
+      </article>
+
+      <article class="kpi-card kpi-gold">
+        <div class="kpi-top">
+          <span class="kpi-label">👑 鹿帝国領 市町村数</span>
+          <span class="grade-chip grade-gold">比率≧100%</span>
+        </div>
+        <div class="kpi-value mono" id="kpiEmpireCount">10<span class="kpi-unit"> / 39</span></div>
+        <div class="kpi-sub" id="kpiEmpireSub">県土面積の 53.8%（1,986.5 km²）を支配※</div>
+      </article>
+
+      <article class="kpi-card kpi-gold">
+        <div class="kpi-top">
+          <span class="kpi-label">🏆 最強鹿勢力自治体</span>
+          <span class="grade-chip grade-c">区分C 推定</span>
+        </div>
+        <div class="kpi-value" id="kpiStrongestName">上北山村</div>
+        <div class="kpi-sub" id="kpiStrongestSub">鹿人比率 1,395.6%（人間362 vs 鹿5,052）</div>
+      </article>
+
+      <article class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">推定値算出市町村数</span>
+          <span class="grade-chip grade-d">未判定 7市町</span>
+        </div>
+        <div class="kpi-value mono" id="kpiEstimatedCount">32<span class="kpi-unit"> / 39</span></div>
+        <div class="kpi-sub" id="kpiEstimatedSub">区分B:1 / C:31 / 定住森林なし未判定D:7</div>
+      </article>
+    </section>
+
+    <!-- Primary Workspace: Controls + Interactive Map + Inspector -->
+    <section class="tactical-workspace">
+      <!-- Left Sidebar: Controls & Sensitivity Simulator -->
+      <aside class="panel panel-controls">
+        <div class="panel-header">
+          <h2>🎛️ 戦術マップ制御</h2>
+          <span class="panel-tag">CONTROLS</span>
+        </div>
+
+        <div class="control-group">
+          <label class="ctrl-title">地図可視化レイヤー</label>
+          <div class="layer-buttons" id="layerButtons">
+            <button class="layer-btn active" data-layer="dominance">
+              <span class="l-ico">👑</span><span>勢力支配図（5段階分類）</span>
+            </button>
+            <button class="layer-btn" data-layer="ratio">
+              <span class="l-ico">⚔️</span><span>鹿人比率ヒートマップ（%）</span>
+            </button>
+            <button class="layer-btn" data-layer="deer">
+              <span class="l-ico">🦌</span><span>鹿の推定生息数（頭）</span>
+            </button>
+            <button class="layer-btn" data-layer="human">
+              <span class="l-ico">👥</span><span>人間人口ヒートマップ（人）</span>
+            </button>
+            <button class="layer-btn" data-layer="density">
+              <span class="l-ico">🌲</span><span>鹿の生息密度（頭/km²）</span>
+            </button>
+            <button class="layer-btn" data-layer="depi">
+              <span class="l-ico">⚡</span><span>鹿帝国勢力指数 DEPI（pt）</span>
+            </button>
+            <button class="layer-btn" data-layer="evidence">
+              <span class="l-ico">🛡️</span><span>証拠区分マップ（A/B/C/D）</span>
+            </button>
+          </div>
+          <div id="densityBasisBox" class="sub-toggle hidden">
+            <span>密度基準面積：</span>
+            <button class="chip-btn active" data-basis="admin">行政面積</button>
+            <button class="chip-btn" data-basis="forest">森林面積</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="ctrl-title">推定シナリオ＆証拠厳格度</label>
+          <div class="scenario-grid" id="scenarioButtons">
+            <button class="scen-btn active" data-scenario="std">
+              <strong>標準モデル</strong>
+              <small>約6.25万頭</small>
+            </button>
+            <button class="scen-btn" data-scenario="low">
+              <strong>保守的（下限）</strong>
+              <small>約4.59万頭</small>
+            </button>
+            <button class="scen-btn" data-scenario="high">
+              <strong>高密度（上限）</strong>
+              <small>約8.12万頭</small>
+            </button>
+            <button class="scen-btn" data-scenario="strict">
+              <strong>厳格証拠(A/B)</strong>
+              <small>区分C非表示</small>
+            </button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="slider-head">
+            <label class="ctrl-title" for="sliderEast">What-If 密度シミュレーター</label>
+            <button id="btnResetSliders" class="mini-link">標準へ戻す</button>
+          </div>
+          <p class="ctrl-hint">地域ブロック別の森林鹿密度（頭/km²）を変更し、勢力逆転を検証</p>
+          <div class="slider-row">
+            <div class="slider-lbl"><span>東部ブロック</span><strong class="mono" id="valEast">26.0 頭/km²</strong></div>
+            <input type="range" id="sliderEast" min="8" max="42" step="0.5" value="26.0" />
+          </div>
+          <div class="slider-row">
+            <div class="slider-lbl"><span>南部ブロック</span><strong class="mono" id="valSouth">20.0 頭/km²</strong></div>
+            <input type="range" id="sliderSouth" min="6" max="36" step="0.5" value="20.0" />
+          </div>
+          <div class="slider-row">
+            <div class="slider-lbl"><span>北西部ブロック</span><strong class="mono" id="valNW">16.0 頭/km²</strong></div>
+            <input type="range" id="sliderNW" min="4" max="32" step="0.5" value="16.0" />
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="ctrl-title">GIS 空間オーバーレイ</label>
+          <label class="toggle-item">
+            <input type="checkbox" id="chkMesh" />
+            <span>▦ 5km投影密度メッシュ（171区画）</span>
+          </label>
+          <label class="toggle-item">
+            <input type="checkbox" id="chkZones" checked />
+            <span>⛩️ 奈良公園保護区 &amp; 大台ヶ原マーカー</span>
+          </label>
+          <label class="toggle-item">
+            <input type="checkbox" id="chkSensitive" />
+            <span>⚠️ 境界敏感3町村（曽爾・山添・吉野）強調</span>
+          </label>
+          <label class="toggle-item">
+            <input type="checkbox" id="chkLabels" checked />
+            <span>🏷️ 主要市町村ラベル表示</span>
+          </label>
+        </div>
+
+        <div class="control-group">
+          <label class="ctrl-title" for="quickSelect">市町村クイック検索</label>
+          <select id="quickSelect" class="dark-select">
+            <option value="">-- 39市町村を選択してフォーカス --</option>
+          </select>
+        </div>
+      </aside>
+
+      <!-- Center Map Viewport -->
+      <section class="panel panel-map">
+        <div class="map-topbar">
+          <div class="map-topbar-left">
+            <div class="map-mode-title">
+              <span class="pulse-dot"></span>
+              <span id="activeLayerLabel">勢力支配図（5段階分類） — 標準モデル</span>
+            </div>
+            <div class="view-mode-switch" id="viewModeSwitch" role="group" aria-label="表示次元切替">
+              <button type="button" class="view-btn active" data-view="3d">🧊 3D立体</button>
+              <button type="button" class="view-btn" data-view="split">🌗 3D+2D並列</button>
+              <button type="button" class="view-btn" data-view="2d">🗺️ 2D平面</button>
+            </div>
+          </div>
+          <div class="map-actions">
+            <button id="btnTileMode" class="chip-btn" title="2D背景地図の表示モードを切替">🗺️ 地理院(暗)</button>
+            <button id="btnZoomNara" class="chip-btn">全域表示</button>
+            <button id="btnZoomPark" class="chip-btn">⛩️ 奈良市/公園</button>
+            <button id="btnZoomSouth" class="chip-btn">👑 奥吉野</button>
+          </div>
+        </div>
+
+        <div class="map-canvas-wrap view-3d" id="mapCanvasWrap">
+          <!-- WebGL 3D Stage -->
+          <div id="map3dContainer" class="map3d-stage" role="region" aria-label="奈良県39市町村 3D鹿帝国勢力図">
+            <!-- Docked Top 3D Controls Bar (zero overlap over 3D terrain) -->
+            <div class="hud-3d-controls">
+              <div class="hud-3d-row" id="hudHeightMetric">
+                <span class="hud-3d-label">3D高さ:</span>
+                <button type="button" class="hud-pill active" data-hmetric="auto">連動</button>
+                <button type="button" class="hud-pill" data-hmetric="ratio">⚔️鹿人比率</button>
+                <button type="button" class="hud-pill" data-hmetric="deer">🦌鹿生息数</button>
+                <button type="button" class="hud-pill" data-hmetric="human">👥人間人口</button>
+                <button type="button" class="hud-pill" data-hmetric="forest">🌲森林率</button>
+                <label class="hud-scale-wrap" title="3D立体高さの倍率を調整">
+                  倍率
+                  <input type="range" id="sliderHeight3d" min="0.5" max="2.5" step="0.1" value="1.2" />
+                  <span id="valHeight3d" class="mono">1.2x</span>
+                </label>
+              </div>
+              <div class="hud-3d-row" id="hudCameraPresets">
+                <span class="hud-3d-label">視点:</span>
+                <button type="button" class="hud-pill" data-cam="overview">🦅 全域鳥瞰</button>
+                <button type="button" class="hud-pill" data-cam="yoshino">👑 奥吉野</button>
+                <button type="button" class="hud-pill" data-cam="basin">🏙️ 奈良盆地</button>
+                <button type="button" class="hud-pill" data-cam="park">⛩️ 奈良公園</button>
+                <button type="button" class="hud-pill" id="btnAutoRotate3d">🔄 回転</button>
+                <button type="button" class="hud-pill active" id="btnToggleTowers">🗼 2柱タワー</button>
+                <button type="button" class="hud-pill hud-demo-btn" id="btnFlipDemo3d">⚡ 人vs鹿 3D反転デモ</button>
+              </div>
+            </div>
+
+            <div class="map3d-viewport-inner">
+              <div id="map3dCanvas" class="map3d-canvas-host"></div>
+              <div id="labels3dOverlay" class="labels-3d-overlay"></div>
+
+              <!-- Top-Right Status -->
+              <div class="hud-3d-status">
+                <span class="hud-3d-engine" id="engine3dBadge">WebGL 3D (Three.js)</span>
+                <span>左ドラッグ回転 / ホイール拡大 / 右ドラッグ移動 / クリック選択</span>
+              </div>
+
+              <!-- Twin Tower Micro Legend -->
+              <div class="tower-legend-chip">
+                <span><span class="tower-dot" style="background:#38bdf8"></span>人間人口(√)</span>
+                <span><span class="tower-dot" style="background:#fbbf24"></span>鹿推定数(√) ※D区分非表示</span>
+              </div>
+
+              <div id="tooltip3d" class="tooltip-3d hidden"></div>
+            </div>
+          </div>
+
+          <!-- 2D Leaflet Map (Synced with 3D) -->
+          <div id="map" class="gsi-dark-tiles" role="region" aria-label="奈良県39市町村 2D鹿帝国勢力図"></div>
+          <div id="mapLegend" class="map-legend"></div>
+        </div>
+        <div class="map-bottom-bar">
+          ※3D立体高さは選択指標の視覚強調です（未判定・区分Dは推定鹿高さゼロ＝平坦表示で捏造を防止）。「鹿帝国領」等の表現は演出的名称です。2D背景地図：国土地理院淡色地図。
+        </div>
+      </section>
+
+      <!-- Right Sidebar: Municipality Detail Inspector -->
+      <aside class="panel panel-inspector" id="inspectorPanel">
+        <div class="panel-header">
+          <h2 id="inspTitle">📜 帝国情勢ブリーフィング</h2>
+          <span class="panel-tag" id="inspCode">NARA-ALL</span>
+        </div>
+        <div id="inspectorBody" class="inspector-body">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </aside>
+    </section>
+
+    <!-- Deep Analysis Tabs Section -->
+    <section class="panel analysis-hub">
+      <div class="hub-tabs" role="tablist">
+        <button class="hub-tab active" data-tab="charts" role="tab">📊 クロス分析・時系列ラボ</button>
+        <button class="hub-tab" data-tab="table" role="tab">📋 全39市町村データ一覧</button>
+        <button class="hub-tab" data-tab="redteam" role="tab">🛡️ Red Team監査 &amp; 証拠区分</button>
+        <button class="hub-tab" data-tab="verdict" role="tab">👑 結論：人間の県か、鹿の帝国か？</button>
+      </div>
+
+      <!-- Tab 1: Charts -->
+      <div class="hub-pane active" id="tab-charts">
+        <div class="charts-grid">
+          <article class="chart-card chart-card-full">
+            <div class="chart-head">
+              <h3>🧊 0. 3D空間相関キューブ：森林率(X) × 鹿人比率(Y・対数) × 人口増減率(Z) × 鹿数(球体サイズ)</h3>
+              <span class="chart-note">黄金の水平面＝鹿人比率100%（鹿帝国領境界ライン）。球体ドラッグ回転・クリックで市町村フォーカス</span>
+            </div>
+            <div class="cube-3d-wrap" id="chart3dCube">
+              <div class="cube-3d-overlay">
+                <span class="cube-axis-pill">X軸: 森林率 0→100%</span>
+                <span class="cube-axis-pill">Y軸(高): 鹿人比率 0.5→2000%</span>
+                <span class="cube-axis-pill">Z軸: 人口増減 -25→+5%</span>
+                <span class="cube-axis-pill" style="border-color:rgba(245,158,11,0.6);color:#fcd34d">黄金平面 = 100%帝国領閾値</span>
+              </div>
+              <div class="cube-actions">
+                <button type="button" class="hud-pill" id="btnResetCube">↺ 視点リセット</button>
+              </div>
+              <div id="cube3dTooltip" class="cube-tooltip hidden"></div>
+            </div>
+          </article>
+
+          <article class="chart-card">
+            <div class="chart-head">
+              <h3>1. 森林率（%）× 鹿人比率（%）の関係</h3>
+              <span class="chart-note">※相関関係であり因果関係ではありません</span>
+            </div>
+            <div class="chart-box"><canvas id="chartForestRatio"></canvas></div>
+          </article>
+
+          <article class="chart-card">
+            <div class="chart-head">
+              <h3>2. 人口増減率（2020→2026）× 鹿人比率</h3>
+              <span class="chart-note">人口減少率が大きい山間村ほど鹿人比率が高い傾向</span>
+            </div>
+            <div class="chart-box"><canvas id="chartPopDecline"></canvas></div>
+          </article>
+
+          <article class="chart-card">
+            <div class="chart-head">
+              <h3>3. 奈良公園の鹿（1945–2026）vs 県総人口（1980–2026）</h3>
+              <span class="chart-note">2026年 奈良公園は過去最多1,687頭／県人口は減少継続</span>
+            </div>
+            <div class="chart-box"><canvas id="chartTimeseries"></canvas></div>
+          </article>
+
+          <article class="chart-card">
+            <div class="chart-head">
+              <h3>4. 鹿推定生息数 TOP12 自治体（標準＋保守/高密度レンジ）</h3>
+              <span class="chart-note">十津川村（約1.3万頭）を筆頭に南・東部に集中</span>
+            </div>
+            <div class="chart-box"><canvas id="chartTopDeer"></canvas></div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Tab 2: 39 Municipalities Table -->
+      <div class="hub-pane" id="tab-table">
+        <div class="table-toolbar">
+          <input type="search" id="tblSearch" placeholder="市町村名・郡名で検索..." class="dark-input" />
+          <select id="tblFilterTier" class="dark-select compact">
+            <option value="ALL">すべての勢力階級</option>
+            <option value="EMPIRE">👑 鹿帝国領</option>
+            <option value="DEER_DOMINANT">🦌 鹿優勢地域</option>
+            <option value="CONTESTED">⚔️ 勢力均衡地域</option>
+            <option value="HUMAN_DOMINANT">🏙️ 人間優勢地域</option>
+            <option value="UNDETERMINED">❓ 未判定地域(D)</option>
+          </select>
+          <select id="tblFilterGrade" class="dark-select compact">
+            <option value="ALL">すべての証拠区分</option>
+            <option value="B">区分B (奈良市)</option>
+            <option value="C">区分C (空間配分推定)</option>
+            <option value="D">区分D (データ不足)</option>
+          </select>
+          <select id="tblSort" class="dark-select compact">
+            <option value="ratio_desc">鹿人比率（高い順）</option>
+            <option value="deer_desc">鹿推定数（多い順）</option>
+            <option value="human_desc">人間人口（多い順）</option>
+            <option value="density_desc">行政鹿密度（高い順）</option>
+            <option value="forest_desc">森林率（高い順）</option>
+            <option value="depi_desc">DEPI勢力指数（高い順）</option>
+            <option value="jis_asc">自治体コード順</option>
+          </select>
+          <button id="btnExportCsv" class="btn-gold">⬇ CSV出力</button>
+        </div>
+        <div class="table-wrap">
+          <table class="empire-table">
+            <thead>
+              <tr>
+                <th>コード</th>
+                <th>市町村名</th>
+                <th>ブロック</th>
+                <th>証拠</th>
+                <th>人間人口<br><small>(2026-10)</small></th>
+                <th>2020比<br><small>増減率</small></th>
+                <th>面積<br><small>(km²)</small></th>
+                <th>森林率<br><small>(%)</small></th>
+                <th>鹿推定数<br><small>(レンジ)</small></th>
+                <th>鹿人比率<br><small>(%)</small></th>
+                <th>鹿密度<br><small>(行政/森林)</small></th>
+                <th>DEPI<br><small>(帝国pt)</small></th>
+                <th>勢力分類</th>
+              </tr>
+            </thead>
+            <tbody id="muniTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 3: Red Team Audit -->
+      <div class="hub-pane" id="tab-redteam">
+        <div id="redTeamContent" class="redteam-grid"></div>
+      </div>
+
+      <!-- Tab 4: Executive Verdict -->
+      <div class="hub-pane" id="tab-verdict">
+        <div id="verdictContent" class="verdict-layout"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cmd-footer">
+    <div>
+      <strong>DEER EMPIRE NARA — 鹿帝国プロジェクト</strong> | 出典：奈良県推計人口調査(2026-10-01)・令和2年国勢調査・国土地理院面積調・2020年農林業センサス・奈良の鹿愛護会(2026-07)・奈良市/奈良県ニホンジカ管理計画・国土数値情報(N03)
+    </div>
+    <div>
+      ※本ダッシュボードの「鹿帝国領」等の表現は統計可視化上の演出であり、実際の生態的・行政的支配関係を示すものではありません。未判定地域(区分D)は推測値による比率算出を除外しています。
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" crossorigin=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin=""></script>
+  <script src="data_bundle.js"></script>
+  <script src="app.js"></script>
+  <script src="map3d.js"></script>
+  <script src="theme.js"></script>
+</body>
+</html>
