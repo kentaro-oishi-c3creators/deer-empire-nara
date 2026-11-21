@@ -1,0 +1,85 @@
+{
+  "project": "Deer Empire NARA (鹿帝国プロジェクト)",
+  "created_date": "2026-11-21",
+  "datasets": [
+    {
+      "id": "boundary_n03",
+      "name": "奈良県39市町村行政区域GeoJSON",
+      "origin": "国土交通省 国土数値情報 行政区域データ (N03-21_29_210101)",
+      "distribution_repo": "SmartNews Media Research Institute (smartnews-smri/japan-topography)",
+      "url": "https://raw.githubusercontent.com/smartnews-smri/japan-topography/main/data/municipality/geojson/s0010/N03-21_29_210101.json",
+      "license": "国土数値情報ダウンロードサービス利用約款 / CC BY 4.0 準拠（出典明記により複製・加工・再配布可）",
+      "reference_date_accessed": "2026-11-21"
+    },
+    {
+      "id": "human_pop_2026",
+      "name": "奈良県推計人口調査（令和8年10月1日現在）",
+      "origin": "奈良県 統計分析課",
+      "url": "https://www.pref.nara.jp/19505.htm",
+      "license": "奈良県オープンデータ／政府標準利用規約（第2.0版）互換（出典表示により利用可）",
+      "data_base_date": "2026-10-01",
+      "reference_date_accessed": "2026-11-21"
+    },
+    {
+      "id": "human_pop_census_2020",
+      "name": "令和2年国勢調査 確定人口",
+      "origin": "総務省統計局 / e-Stat / 奈良県",
+      "url": "https://www.e-stat.go.jp/",
+      "license": "政府統計の総合窓口(e-Stat)利用規約（出典明記により自由利用可）",
+      "data_base_date": "2020-10-01",
+      "reference_date_accessed": "2026-11-21"
+    },
+    {
+      "id": "gsi_area",
+      "name": "全国都道府県市区町村別面積調",
+      "origin": "国土地理院",
+      "url": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+      "license": "国土地理院コンテンツ利用規約（政府標準利用規約第2.0版準拠・出典明記）",
+      "reference_date_accessed": "2026-11-21"
+    },
+    {
+      "id": "forestry_census_2020",
+      "name": "2020年農林業センサス（農山村地域調査：総土地面積及び林野面積）",
+      "origin": "農林水産省 / e-Stat",
+      "url": "https://www.e-stat.go.jp/",
+      "license": "政府標準利用規約第2.0版準拠",
+      "data_base_date": "2020-02-01",
+      "reference_date_accessed": "2026-11-21"
+    },
+    {
+      "id": "nara_park_deer_2026",
+      "name": "奈良のシカ生息頭数調査（2026年7月15・16日ほか時系列）",
+      "origin": "一般財団法人 奈良の鹿愛護会",
+      "url": "https://www.naradeer.com/",
+      "license": "公開報道・公式発表データの統計的引用（出典明記）",
+      "data_base_date": "2026-07-16",
+      "reference_date_accessed": "2026-11-21"
+    },
+    {
+      "id": "nara_city_deer_plan",
+      "name": "奈良市ニホンジカ第二種特定鳥獣管理計画（第2次）及びモニタリング結果",
+      "origin": "奈良県・奈良のシカ保護管理計画検討委員会",
+      "url": "https://www.pref.nara.jp/11624.htm",
+      "license": "公的行政資料の引用・参照（出典明記）",
+      "data_base_date": "2022-04 to 2024-03 (FY2023 density)",
+      "reference_date_accessed": "2026-11-21"
+    },
+    {
+      "id": "nara_pref_deer_plan",
+      "name": "奈良県ニホンジカ第二種特定鳥獣管理計画（第7次）及び鳥獣部会資料",
+      "origin": "奈良県（自然環境保全審議会 鳥獣部会）",
+      "url": "https://www.pref.nara.jp/33754.htm",
+      "license": "公的行政資料の引用・参照（出典明記）",
+      "data_base_date": "FY2022-FY2026",
+      "reference_date_accessed": "2026-11-21"
+    },
+    {
+      "id": "academic_rest_odaigahara",
+      "name": "RESTモデルカメラトラップ密度推定・大台ヶ原ニホンジカ管理計画",
+      "origin": "奈良県森林技術センター（日本生態学会発表）・環境省近畿地方環境事務所",
+      "url": "https://www.env.go.jp/",
+      "license": "学術公表数値・環境省公開行政数値の引用（出典明記）",
+      "reference_date_accessed": "2026-11-21"
+    }
+  ]
+}

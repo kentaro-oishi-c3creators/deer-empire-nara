@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEER EMPIRE NARA — 海外VC向け戦略調査スライド (12 Slides)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="deck-viewport">
+    <div class="slide-stage" id="slideStage">
+
+      <!-- SLIDE 1: COVER (Hybrid) -->
+      <section class="slide slide--dark active" data-title="表紙：DEER EMPIRE NARA — 鹿と人間の空間戦略ブリーフィング">
+        <img src="assets/slide1_hero_nara_dawn.jpg" alt="夜明けの奈良・吉野杉林と鹿" class="slide-bg-photo" onerror="this.style.display='none'" />
+        <div class="slide-bg-scrim-left"></div>
+        <div class="slide-content-z cover-hero">
+          <div style="display:flex;align-items:center;gap:16px">
+            <span class="pill pill-gold">GLOBAL VC FIELD BRIEFING // NARA, JAPAN</span>
+            <span class="pill" style="background:rgba(41,181,232,0.18);color:#7dd3fc;border:1px solid rgba(41,181,232,0.4)">DATA AUDIT: 2026-11-21</span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <p class="eyebrow">DEER EMPIRE NARA — SPATIAL ECOLOGY &amp; DEMOGRAPHICS</p>
+            <h1 class="cover-title">奈良県は人間の県か、<br><span class="accent-gold-txt">それとも鹿の帝国か？</span></h1>
+            <p class="cover-sub">
+              大阪・京都から45分。人口126万人の都市圏と、県土面積の53.8%を占める「鹿帝国領」が<br>
+              同一県内でせめぎ合う世界唯一の空間生態リビングラボ — 全39市町村・完全実証レポート
+            </p>
+          </div>
+
+          <div class="cover-metrics">
+            <div class="cover-metric-box">
+              <div style="font-size:20px;color:#94a3b8;font-weight:700">奈良県 人間総人口 (区分A)</div>
+              <div class="kpi-num-md mono" style="color:#38bdf8;margin-top:4px">1,263,770<span style="font-size:24px;color:#cbd5e1"> 人</span></div>
+            </div>
+            <div class="cover-metric-box">
+              <div style="font-size:20px;color:#94a3b8;font-weight:700">鹿の推定生息数 (標準モデル)</div>
+              <div class="kpi-num-md mono" style="color:#fbbf24;margin-top:4px">62,517<span style="font-size:24px;color:#cbd5e1"> 頭</span></div>
+            </div>
+            <div class="cover-metric-box">
+              <div style="font-size:20px;color:#94a3b8;font-weight:700">👑 鹿帝国領 面積シェア</div>
+              <div class="kpi-num-md mono" style="color:#fbbf24;margin-top:4px">53.8<span style="font-size:24px;color:#cbd5e1"> % (10村)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>DEER EMPIRE NARA | 39市町村空間生態・人口調査（2026年11月）</span>
+          <span>01 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+本日はグローバルVCの皆様へ、日本最古の都・奈良の「意外な真実」をご紹介します。
+京都・大阪のすぐ隣、電車で45分の距離にありながら、奈良県は「人口126万人の人間社会」と「県土の過半を野生の鹿が数で上回る山岳フロンティア」が隣り合う、世界でも類を見ない空間ラボです。
+この12枚では、徹底的な公的統計とRed Team監査に基づく確定事実（Fact）と、そこから見える投資機会の仮説（Hypothesis）を明確に分けてご説明します。</aside>
+      </section>
+
+      <!-- SLIDE 2: EXECUTIVE SUMMARY (Statement + 3 KPI) -->
+      <section class="slide slide--light" data-title="結論：頭数は「人間の県」、県土面積の53.8%は「鹿帝国領」">
+        <div class="slide-head">
+          <p class="eyebrow">01 // EXECUTIVE VERDICT</p>
+          <h2 class="slide-title">頭数では「人間の県（約20倍）」だが、県土面積の<span class="accent-gold-txt">53.8%</span>は鹿が人間を上回る</h2>
+        </div>
+
+        <div class="grid-3">
+          <div class="card card--top-cyan" style="justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <span class="pill pill-cyan">👥 人口総数ベースの結論</span>
+              <div class="kpi-num mono" style="color:#0f6fa3">4.95<span class="kpi-unit-inline">%</span></div>
+              <h3 class="card-h3">県全体は明確に「人間の県」</h3>
+              <p class="body-p">人間 <b>1,263,770人</b>（区分A）に対し、鹿の推定総数は <b>62,517頭</b>（レンジ 45,908〜81,243頭）。人間が人口の <b>95.3%</b> を占め、人間約20人に鹿1頭の比率です。</p>
+            </div>
+            <div style="font-size:22px;color:#0f6fa3;font-weight:700">▶ 都市人口は北西部奈良盆地に集中</div>
+          </div>
+
+          <div class="card card--dark card--top-gold" style="justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <span class="pill pill-gold">👑 空間支配面積ベースの結論</span>
+              <div class="kpi-num mono" style="color:#fbbf24">53.8<span class="kpi-unit-inline">%</span></div>
+              <h3 class="card-h3" style="color:#ffffff">半国土が「鹿帝国領（10村）」</h3>
+              <p class="body-p">森林率 <b>76.9%</b>（283,671 ha）の山林帯では、鹿推定数が人間人口を上回る自治体が <b>10村</b>（面積 <b>1,986.5 km²</b>）に到達。保守的下限モデルでも <b>9村・52.5%</b> で不変です。</p>
+            </div>
+            <div style="font-size:22px;color:#fcd34d;font-weight:700">▶ 住民0.78%の空間に鹿の63.6%が生息</div>
+          </div>
+
+          <div class="card card--top-emerald" style="justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <span class="pill pill-emerald">⛩️ 観光シンボルと実態のギャップ</span>
+              <div class="kpi-num mono" style="color:#059669">2.7<span class="kpi-unit-inline">%</span></div>
+              <h3 class="card-h3">奈良公園は氷山の一角</h3>
+              <p class="body-p">世界的に有名な奈良公園の「神鹿」は2026年7月調査で過去最多 <b>1,687頭</b>（区分A実測）。しかし県全体の推定鹿数に占める割合はわずか2.7%で、残り97%超は山林に生息します。</p>
+            </div>
+            <div style="font-size:22px;color:#047857;font-weight:700">▶ 保護区と管理区の二重計上を完全排除</div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>出典：奈良県推計人口調査(2026-10-01)、2020年農林業センサス、奈良の鹿愛護会(2026-07)、奈良県第7次計画に基づく独自空間統合 ※「鹿帝国領」は演出名称</span>
+          <span>02 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+最も重要な問い「奈良県は人間の県か、鹿の帝国か？」への答えは、どの軸で測るかによって劇的に変わります。
+頭数で測れば、人間126万人に対し鹿6.25万頭（鹿人比率4.95%）で間違いなく「人間の県」です。
+しかし空間で測ると、県土面積の53.8%が「人間より鹿の方が多い自治体」で占められています。しかも保守的な下限推計（約4.59万頭）に落としても9村・52.5%が維持される極めて頑健な構造です。</aside>
+      </section>
+
+      <!-- SLIDE 3: SPATIAL POLARIZATION (Exact GeoJSON SVG Map) -->
+      <section class="slide slide--pale" data-title="空間二極構造：県民の99.2%は盆地等へ、鹿の63.6%は南東10村へ">
+        <div class="slide-head">
+          <p class="eyebrow">02 // SPATIAL POLARIZATION (39 MUNICIPALITIES)</p>
+          <h2 class="slide-title">県民の<span class="accent-cyan-txt">99.2%</span>が北西部等に集住し、南東部10村に鹿の<span class="accent-gold-txt">63.6%</span>が集中する</h2>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 0.95fr 1.05fr;">
+          <!-- Left: Exact SVG Map injected by slides.js -->
+          <div class="card" style="padding:20px 24px;flex-direction:row;align-items:center;gap:16px;background:#091322;border-color:#1e293b">
+            <div id="slide3MapContainer" style="flex:1;height:100%;display:flex;align-items:center;justify-content:center"></div>
+            <div style="width:280px;display:flex;flex-direction:column;gap:12px;color:#e2e8f0;font-size:19px">
+              <div style="font-weight:800;color:#fde68a;font-size:21px;border-bottom:1px solid rgba(148,163,184,0.25);padding-bottom:8px">勢力分類（鹿人比率）</div>
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:4px;background:#f59e0b;flex-shrink:0"></span><span>👑 鹿帝国領 (10村)<br><small style="color:#94a3b8">≧100% / 面積53.8%</small></span></div>
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:4px;background:#10b981;flex-shrink:0"></span><span>🦌 鹿優勢 (0)</span></div>
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:4px;background:#a855f7;flex-shrink:0"></span><span>⚔️ 勢力均衡 (5市町村)<br><small style="color:#94a3b8">10%〜50%未満</small></span></div>
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:4px;background:#3b82f6;flex-shrink:0"></span><span>🏙️ 人間優勢 (17市町村)<br><small style="color:#94a3b8">10%未満</small></span></div>
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:4px;background:repeating-linear-gradient(-45deg,#475569,#475569 4px,#1e293b 4px,#1e293b 8px);flex-shrink:0;border:1px solid #64748b"></span><span>❓ 未判定 区分D (7市町)<br><small style="color:#94a3b8">森林0〜39ha (除外)</small></span></div>
+              <div style="margin-top:8px;padding-top:10px;border-top:1px solid rgba(148,163,184,0.25);font-size:19px;color:#cbd5e1">
+                <div>🔴 奈良公園保護区 (1,687頭)</div>
+                <div style="margin-top:4px">🟢 大台ヶ原管理域 (環境省)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Dual Comparison & Insights -->
+          <div style="display:flex;flex-direction:column;gap:24px;justify-content:space-between">
+            <div class="card" style="gap:18px">
+              <h3 class="card-h3">1. 鹿帝国領（10村）vs その他（29市町村）の極端な非対称性</h3>
+              <div style="display:flex;flex-direction:column;gap:16px">
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:23px;font-weight:700;margin-bottom:6px">
+                    <span>👥 人間人口のシェア</span><span class="mono" style="color:#0f6fa3">その他 99.22% / 鹿帝国領 0.78% (9,828人)</span>
+                  </div>
+                  <div class="hbar-track" style="height:28px;display:flex;border-radius:8px">
+                    <div style="width:99.22%;background:#2563eb"></div>
+                    <div style="width:0.78%;background:#f59e0b"></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:23px;font-weight:700;margin-bottom:6px">
+                    <span>🦌 鹿推定頭数のシェア</span><span class="mono" style="color:#d97706">鹿帝国領 63.6% (39,743頭) / その他 36.4%</span>
+                  </div>
+                  <div class="hbar-track" style="height:28px;display:flex;border-radius:8px">
+                    <div style="width:63.6%;background:#f59e0b"></div>
+                    <div style="width:36.4%;background:#3b82f6"></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:23px;font-weight:700;margin-bottom:6px">
+                    <span>🗺️ 県土面積のシェア</span><span class="mono" style="color:#d97706">鹿帝国領 53.8% (1,986.5km²) / その他 46.2%</span>
+                  </div>
+                  <div class="hbar-track" style="height:28px;display:flex;border-radius:8px">
+                    <div style="width:53.8%;background:#f59e0b"></div>
+                    <div style="width:46.2%;background:#64748b"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card--top-violet" style="gap:12px">
+              <h3 class="card-h3">2. 都市と山岳を隔てる「勢力均衡防衛線（紫帯）」</h3>
+              <p class="body-p">
+                五條市（18.2%）・宇陀市（21.1%）・下市町（31.7%）・山添村（39.9%）・吉野町（42.5%）の5自治体が、盆地都市圏と吉野山岳地帯の間のバッファゾーンを形成しています。一方、盆地中央部7市町（斜線）は森林がなく定住鹿を推計対象外（区分D）としています。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>出典：国土数値情報(N03-21_29_210101)行政界、2026-10-01推計人口、2020年農林業センサス（標準シナリオ）</span>
+          <span>03 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+この地図は国土数値情報の正確な39市町村ポリゴンから生成しています。
+北西部の青いエリアと斜線グレーの奈良盆地に、県人口の99%以上が集中しています。対照的に、南部の黄金色に輝く10の村には、県民のわずか0.78%（9,828人）しか住んでいませんが、面積の53.8%、推定鹿頭数の63.6%がここに集中しています。この鮮烈なジオグラフィーが奈良最大の特徴です。</aside>
+      </section>
+
+      <!-- SLIDE 4: TOP 10 EMPIRE RANKING -->
+      <section class="slide slide--light" data-title="鹿帝国TOP10：上北山村1,395.6%・総合指数DEPI首位は東吉野村">
+        <div class="slide-head">
+          <p class="eyebrow">03 // DEER EMPIRE TERRITORY RANKING</p>
+          <h2 class="slide-title">最前線の「上北山村」では住民1人あたり鹿14頭（<span class="accent-gold-txt">1,395.6%</span>）に達する</h2>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.28fr 0.72fr;">
+          <div class="card" style="padding:26px 32px;gap:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+              <h3 class="card-h3" style="font-size:27px">👑 鹿帝国領 全10村の鹿人比率（標準＋レンジ）</h3>
+              <span class="pill pill-gold" style="white-space:nowrap;flex-shrink:0">証拠区分 C</span>
+            </div>
+            <div id="slide4Bars" class="hbar-list" style="margin-top:6px"></div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="card card--dark card--top-gold" style="gap:8px;padding:22px 26px">
+              <span class="pill pill-gold">比率 県内1位</span>
+              <div style="font-size:36px;font-weight:900;color:#ffffff">上北山村 <span class="mono" style="color:#fbbf24">1,395.6%</span></div>
+              <p class="body-p" style="font-size:21px">人間 <b>362人</b> に対し鹿推定 <b>5,052頭</b>（保守 3,663〜高密度 6,568頭）。森林率 <b>97.0%</b>、面積 274.22 km² の大台ヶ原を抱える村。（※大台ヶ原低密度反映時は野迫川村と首位交代リスクあり）</p>
+            </div>
+
+            <div class="card card--top-emerald" style="gap:8px;padding:22px 26px">
+              <span class="pill pill-emerald">絶対頭数 県内最多</span>
+              <div style="font-size:32px;font-weight:900">十津川村 <span class="mono" style="color:#059669">13,152頭</span></div>
+              <p class="body-p" style="font-size:21px">面積 672.38 km²（日本最大の村）。人口 2,547人に対し鹿人比率 516.4%。県内推定鹿の約21%が1村に生息。</p>
+            </div>
+
+            <div class="card card--top-cyan" style="gap:8px;padding:22px 26px">
+              <span class="pill pill-cyan">複合勢力指数 DEPI 1位</span>
+              <div style="font-size:32px;font-weight:900">東吉野村 <span class="mono" style="color:#0f6fa3">88.1 帝国pt</span></div>
+              <p class="body-p" style="font-size:21px">人口減少による過大評価を抑え「森林率・行政密度・比率」を統合した別指標DEPIでは、高密度東部林業帯の東吉野村が首位。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>※DEPI（0〜100 帝国pt）は人口比（%）と混同しないための本プロジェクト独自複合指数。すべて証拠区分Cによる空間配分推計。</span>
+          <span>04 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+鹿帝国領10村の内部を詳細に見ると、上位4村（上北山・野迫川・川上・十津川）は鹿人比率500%超、すなわち「人間1人に対し鹿が5頭〜14頭」という領域です。
+また「比率（%）」は人口が数百人の村ほど跳ね上がる性質があるため、面積あたりの密度と森林率を加味した独自指数「DEPI（帝国pt）」も並置しました。この軸では東吉野村（88.1pt）が首位となり、両指標の併用でバイアスを防いでいます。</aside>
+      </section>
+
+      <!-- SLIDE 5: NARA CITY DUAL STRUCTURE (Hybrid) -->
+      <section class="slide slide--dark" data-title="奈良市の二重構造：神鹿1,687頭（保護）と野生2,852頭（管理）の厳密分離">
+        <div class="slide-head">
+          <p class="eyebrow">04 // SACRED VS. WILD: NARA CITY ZONING</p>
+          <h2 class="slide-title">奈良公園の「神鹿<span class="accent-gold-txt">1,687頭</span>」と東部山間「野生鹿<span class="accent-cyan-txt">2,852頭</span>」を分離管理</h2>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.15fr 0.85fr;align-items:stretch">
+          <!-- Left: Structured Zoning Flow -->
+          <div style="display:flex;flex-direction:column;gap:22px;justify-content:space-between">
+            <div class="card card--glass" style="gap:14px;border-left:8px solid #10b981">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 class="card-h3" style="color:#34d399">⛩️ A・B 保護地区（奈良公園・春日山）</h3>
+                <span class="pill" style="background:rgba(16,185,129,0.22);color:#6ee7b7">証拠区分 A 実測</span>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:18px">
+                <span class="kpi-num-md mono" style="color:#34d399">1,687頭</span>
+                <span class="body-p">（2026年7月15・16日 奈良の鹿愛護会調査｜オス411・メス990・子鹿286）</span>
+              </div>
+              <p class="body-p">国の天然記念物「奈良のシカ」保護中核域。捕獲は厳禁。観光客の給餌回復等で2年連続過去最多。</p>
+            </div>
+
+            <div class="card card--glass" style="gap:10px;border-left:8px solid #94a3b8;padding:24px 34px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 class="card-h3" style="font-size:28px">🛡️ C 緩衝地区（保護と管理の境界帯）</h3>
+                <span class="pill" style="background:rgba(148,163,184,0.2);color:#e2e8f0">生け捕り原則</span>
+              </div>
+              <p class="body-p">原則として殺処分せず、農地等に出没時は生け捕りで保護地区側へ戻す。一次頭数非公表のためモデル上は未根拠加算を排除。</p>
+            </div>
+
+            <div class="card card--glass" style="gap:14px;border-left:8px solid #38bdf8">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 class="card-h3" style="color:#38bdf8">🌲 D 管理地区（東部山間 9地区 約184 km²）</h3>
+                <span class="pill" style="background:rgba(56,189,248,0.2);color:#7dd3fc">証拠区分 B 公的密度</span>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:18px">
+                <span class="kpi-num-md mono" style="color:#38bdf8">2,852頭</span>
+                <span class="body-p">（184 km² × R5冬季糞粒法平均 <b>15.5頭/km²</b>｜SD 16.8）</span>
+              </div>
+              <p class="body-p">田原・柳生等9地区では農林業被害軽減のため年間捕獲上限 <b>450頭</b> を設定。奈良市合計は <b>4,539頭</b>（鹿人比率 1.32%）。</p>
+            </div>
+          </div>
+
+          <!-- Right: Generated Visual -->
+          <div style="position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(245,158,11,0.38);box-shadow:0 24px 60px rgba(0,0,0,0.5)">
+            <img src="assets/slide5_sacred_vs_wild.jpg" alt="奈良公園の神鹿と背後の春日山原生林" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'" />
+            <div style="position:absolute;inset:auto 0 0 0;background:linear-gradient(to top,rgba(6,12,24,0.94),transparent);padding:28px">
+              <div style="font-size:22px;font-weight:800;color:#fbbf24">二重計上ゼロの原則（No Double Counting）</div>
+              <div style="font-size:21px;color:#e2e8f0;margin-top:6px">
+                保護地区の1,687頭（区分A）と、D地区等の野生群（保守11.7〜高密度22.8頭/km²）を分離合算し、観光神鹿を県全体の野生鹿と混同しません。
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>出典：奈良の鹿愛護会(2026-07)、奈良市ニホンジカ第二種特定鳥獣管理計画（第2次）及びR5年度モニタリング報告</span>
+          <span>05 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+「奈良の鹿」というと多くの方が奈良公園の鹿を思い浮かべますが、奈良市の条例・管理計画自体が市内をA〜Dの4ゾーンに厳密に分けています。
+A・B保護地区では1,687頭が「神鹿」として守られる一方、わずか数キロ東のD管理地区（約184km²）には推定2,852頭が生息し、年間450頭上限で捕獲管理されています。この同一自治体内の保護と管理の境界こそ、奈良のガバナンスの精髄です。</aside>
+      </section>
+
+      <!-- SLIDE 6: TIMESERIES CROSSING (SVG 2-Axis Chart) -->
+      <section class="slide slide--pale" data-title="80年の軌跡：奈良公園の鹿は過去最多1,687頭、県人口は減少局面へ">
+        <div class="slide-head">
+          <p class="eyebrow">05 // 80-YEAR TRAJECTORY: DEER SURGE VS. DEMOGRAPHIC SHIFT</p>
+          <h2 class="slide-title">奈良公園の鹿は戦後<span class="accent-gold-txt">79頭</span>から過去最多<span class="accent-gold-txt">1,687頭</span>へ、県人口は<span class="accent-cyan-txt">17.9万人減</span>へ</h2>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.35fr 0.65fr;">
+          <div class="card" style="padding:26px 30px;gap:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <h3 class="card-h3">奈良公園の鹿（1945–2026）vs 奈良県総人口（1980–2026）</h3>
+              <div style="display:flex;gap:16px;font-size:21px;font-weight:700">
+                <span style="color:#d97706">● 奈良公園の鹿（頭）</span>
+                <span style="color:#0f6fa3">● 奈良県人口（万人）</span>
+              </div>
+            </div>
+            <div id="slide6ChartContainer" style="flex:1;display:flex;align-items:center"></div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:16px;justify-content:space-between">
+            <div class="card card--top-gold" style="gap:8px;padding:20px 26px">
+              <span class="pill pill-gold">Phase 1: 戦後最小から回復</span>
+              <h3 class="card-h3" style="font-size:26px">1945年 79頭 → 1995年 1,192頭</h3>
+              <p class="body-p" style="font-size:21px">戦後の混乱期にはわずか79頭まで激減。1957年の天然記念物指定と保護活動により1,100〜1,300頭規模の安定期へ。</p>
+            </div>
+            <div class="card card--top-cyan" style="gap:8px;padding:20px 26px">
+              <span class="pill pill-cyan">Phase 2: コロナ禍と県人口減少</span>
+              <h3 class="card-h3" style="font-size:26px">県人口 2000年144.3万 → 126.4万人</h3>
+              <p class="body-p" style="font-size:21px">奈良県の人口は2000年をピークに減少へ転換（-12.4%）。一方、奈良公園の鹿も2021年にコロナ禍で1,105頭（子鹿82頭）へ一時減少。</p>
+            </div>
+            <div class="card card--dark" style="gap:8px;padding:20px 26px">
+              <span class="pill pill-gold">Phase 3: 2026年 過去最多更新</span>
+              <h3 class="card-h3" style="color:#fbbf24;font-size:26px">2024: 1,325 → 2025: 1,465 → 2026: 1,687頭</h3>
+              <p class="body-p" style="font-size:21px">観光客急回復・不適切給餌増を背景に5年連続増加。市街地への進出や過密に伴う自然死増が課題化。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>出典：一般財団法人 奈良の鹿愛護会（1945〜2026年7月調査）、総務省 国勢調査（1980〜2025年確定値）、奈良県推計人口調査（2026-10-01）</span>
+          <span>06 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+長期時系列を重ねると、非常にドラマチックな交差が見えます。
+奈良公園の鹿は1945年の79頭から2026年の1,687頭へと約21倍に増えました。コロナ禍で一度1,105頭に落ちましたが、インバウンド回復と共に急騰し、2年連続で過去最多を更新しています。対照的に奈良県の人間人口は2000年の144.3万人をピークに減少を続け、現在126.4万人です。</aside>
+      </section>
+
+      <!-- SLIDE 7: SCATTER & SONI TIPPING POINT -->
+      <section class="slide slide--light" data-title="転換メカニズム：森林率75%超の急騰と「人口減だけ」で帝国化する曽爾村">
+        <div class="slide-head">
+          <p class="eyebrow">06 // ECOLOGICAL THRESHOLD &amp; DEPOPULATION TIPPING POINT</p>
+          <h2 class="slide-title">森林率<span class="accent-emerald-txt">75%超</span>で比率が急騰し、曽爾村は「人口減少」だけで鹿帝国領へ越境した</h2>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.25fr 0.75fr;">
+          <div class="card" style="padding:24px 28px;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+              <h3 class="card-h3" style="font-size:27px">森林率（%）× 鹿人比率（%・対数軸）32市町村</h3>
+              <span style="font-size:19px;color:#64748b;white-space:nowrap">※相関であり因果ではありません</span>
+            </div>
+            <div id="slide7ScatterContainer" style="flex:1;display:flex;align-items:center;min-height:0"></div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:20px;justify-content:space-between">
+            <div class="card card--top-gold" style="gap:12px">
+              <span class="pill pill-gold">ティッピングポイント実例：曽爾村</span>
+              <h3 class="card-h3">鹿の頭数が同じでも<br>人間が減れば「帝国領」になる</h3>
+              <div style="display:flex;flex-direction:column;gap:10px;background:#fef3c7;padding:16px 18px;border-radius:12px;color:#78350f">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:21px">
+                  <span>2020年人口基準 (1,295人)</span><strong class="mono" style="white-space:nowrap">91.2% (鹿優勢)</strong>
+                </div>
+                <div style="text-align:center;font-size:20px;font-weight:800">⬇ 6年間で人間が -15.4% 減少</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:22px;color:#b45309">
+                  <span>2026年人口基準 (1,096人)</span><strong class="mono" style="white-space:nowrap">107.8% (👑 帝国領)</strong>
+                </div>
+              </div>
+              <p class="body-p">推定鹿頭数（1,181頭）が一定のままでも、過疎化という分母の縮小が境界村を押し上げます。</p>
+            </div>
+
+            <div class="card card--top-violet" style="gap:10px">
+              <h3 class="card-h3">山間部で進む急速な人口減（2020→2026）</h3>
+              <p class="body-p">御杖村 <b>-20.6%</b>、下市町 <b>-20.2%</b>、黒滝村 <b>-19.0%</b>、東吉野村 <b>-18.7%</b>、上北山村 <b>-18.5%</b>。県平均（-4.6%）の3〜4倍の速度で人が去っています。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>出典：2020年農林業センサス、令和2年国勢調査(2020-10)、奈良県推計人口(2026-10)。区分Dの7市町は散布図から除外。</span>
+          <span>07 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+森林率が75%〜80%を超えたあたりから、鹿人比率は対数的に跳ね上がります。
+特に注目していただきたいのが「曽爾村」です。私たちのRed Team検証が発見した最も示唆的な事実として、2020年国勢調査の人口1,295人を分母にすると曽爾村は91.2%の「鹿優勢地域」ですが、2026年人口1,096人では107.8%となり「鹿帝国領」へ越境します。つまり人間の人口減少自体が勢力図を塗り替えているのです。</aside>
+      </section>
+
+      <!-- SLIDE 8: MANAGEMENT BOTTLENECK & TECH SHIFT -->
+      <section class="slide slide--pale" data-title="管理の壁と技術転換：捕獲目標1.6万頭未達とAIカメラRESTモデル">
+        <div class="slide-head">
+          <p class="eyebrow">07 // THE WILDLIFE TECH OPPORTUNITY</p>
+          <h2 class="slide-title">年間捕獲は5.3倍（<span class="accent-cyan-txt">10,296頭</span>）でも目標未達 — 調査の盲点をカメラAIが破る</h2>
+        </div>
+
+        <div class="grid-2">
+          <!-- Left: Capture Gap -->
+          <div class="card" style="justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <span class="pill pill-cyan">📊 奈良県の個体数管理ギャップ</span>
+              <h3 class="card-h3">捕獲圧は23年で5.3倍、なお目標に届かず</h3>
+              <div class="hbar-list" style="margin-top:10px">
+                <div class="hbar-row" style="grid-template-columns:230px 1fr 130px">
+                  <span>H12年度 実績</span>
+                  <div class="hbar-track"><div class="hbar-fill" style="width:12.2%;background:#94a3b8"></div></div>
+                  <strong class="mono" style="text-align:right">1,945頭</strong>
+                </div>
+                <div class="hbar-row" style="grid-template-columns:230px 1fr 130px">
+                  <span>旧計画 捕獲目標</span>
+                  <div class="hbar-track"><div class="hbar-fill" style="width:62.5%;background:#60a5fa"></div></div>
+                  <strong class="mono" style="text-align:right">10,000頭</strong>
+                </div>
+                <div class="hbar-row" style="grid-template-columns:230px 1fr 130px">
+                  <span>R5年度 捕獲実績</span>
+                  <div class="hbar-track"><div class="hbar-fill" style="width:64.4%;background:#0f6fa3"></div></div>
+                  <strong class="mono" style="text-align:right;color:#0f6fa3">10,296頭</strong>
+                </div>
+                <div class="hbar-row" style="grid-template-columns:230px 1fr 130px">
+                  <span>第7次 捕獲目標</span>
+                  <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#d97706"></div></div>
+                  <strong class="mono" style="text-align:right;color:#d97706">16,000頭</strong>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#eef5fa;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:8px">
+              <div style="font-size:23px;font-weight:800;color:#0e2841">第7次管理計画のジレンマ（令和4〜8年度）</div>
+              <p class="body-p" style="font-size:23px">目標生息数 <b>58,000頭</b> への抑制を目指し、猟期延長やメス中心捕獲を強化。しかし令和5年度実績 10,296頭に対し年間目標は <b>16,000頭（未達幅約5,700頭）</b>。高齢化・担い手不足の中、人海戦術の限界が露呈。</p>
+            </div>
+          </div>
+
+          <!-- Right: Measurement Tech Comparison -->
+          <div class="card card--top-emerald" style="justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <span class="pill pill-emerald">📷 観測テクノロジーのパラダイム転換</span>
+              <h3 class="card-h3">従来の「糞塊法」vs カメラトラップ「RESTモデル」</h3>
+              <p class="body-p">奈良県森林技術センター等の研究により、従来の糞塊密度だけでは天然林等でシカの生息を見落とす課題が定量確認されています。</p>
+            </div>
+
+            <table class="slide-table">
+              <thead>
+                <tr>
+                  <th style="width:28%">調査地（林種）</th>
+                  <th style="width:36%">従来：糞塊法密度</th>
+                  <th style="width:36%">カメラ：RESTモデル</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>高取町</b><br><small>スギ・ヒノキ人工林</small></td>
+                  <td class="mono">46.49 糞塊/km</td>
+                  <td class="mono" style="color:#d97706;font-weight:800">30.15 頭/km²</td>
+                </tr>
+                <tr>
+                  <td><b>野迫川村</b><br><small>ブナ・ミズナラ天然林</small></td>
+                  <td class="mono" style="color:#dc2626;font-weight:800">0.0 糞塊/km<br><small>(10粒未満除外時)</small></td>
+                  <td class="mono" style="color:#059669;font-weight:800">14.07 頭/km²<br><small>(高密度生息を検出)</small></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="background:#0e2841;color:#f4f8fb;border-radius:14px;padding:20px 24px;font-size:23px">
+              <strong style="color:#29b5e8">Tech Implication：</strong> 手作業の糞粒カウントから、自動撮影カメラ×AI画像解析（RESTモデル）による<b>空間リアルタイム密度推定</b>への移行が始まっている。
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>出典：奈良県ニホンジカ第二種特定鳥獣管理計画（第7次）、奈良県自然環境保全審議会資料、奈良県森林技術センター・日本生態学会発表資料</span>
+          <span>08 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+VCの視点で極めて重要なのがこのページです。
+奈良県は捕獲数を23年間で5.3倍に増やしましたが、目標の年間16,000頭に届いていません。さらに観測面でも、従来の人間が森を歩いて糞を数える「糞塊法」では、野迫川村の天然林でゼロと判定された地点に、自動撮影カメラ（RESTモデル）が14.07頭/km²の生息を検出しました。つまり「計測と管理の自動化」に対する強い需要がすでに顕在化しています。</aside>
+      </section>
+
+      <!-- SLIDE 9: RED TEAM AUDIT & EVIDENCE GRADES -->
+      <section class="slide slide--light" data-title="科学的信頼性：4段階の証拠区分とRed Team監査による感度テスト">
+        <div class="slide-head">
+          <p class="eyebrow">08 // SCIENTIFIC RIGOR &amp; RED TEAM AUDIT</p>
+          <h2 class="slide-title">不確実性を隠さない4段階の<span class="accent-cyan-txt">証拠区分</span>と監査により39市町村中36市町村の分類不変を実証</h2>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.08fr 0.92fr;">
+          <div class="card" style="padding:26px 28px;gap:14px">
+            <h3 class="card-h3">証拠区分 A / B / C / D の厳格な切り分け</h3>
+            <table class="slide-table" style="font-size:21px">
+              <thead>
+                <tr>
+                  <th style="width:14%">区分</th>
+                  <th style="width:24%">定義</th>
+                  <th style="width:62%">適用対象と実数（計39市町村）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong style="color:#059669">区分 A</strong></td>
+                  <td>公的直接観測・統計</td>
+                  <td>全39市町村人口・面積・森林面積 ／ <b>奈良公園の鹿 1,687頭</b>（奈良市へ統合）</td>
+                </tr>
+                <tr>
+                  <td><strong style="color:#0f6fa3">区分 B</strong></td>
+                  <td>公的資料に基づく推定</td>
+                  <td><b>1市（奈良市 4,539頭）</b>：愛護会A実測(1,687)＋D管理区(184km²×15.5)※未根拠C区加算撤廃</td>
+                </tr>
+                <tr>
+                  <td><strong style="color:#d97706">区分 C</strong></td>
+                  <td>追加仮定を伴う独自推定</td>
+                  <td><b>31市町村（57,978頭）</b>：現況森林面積重み×3ブロック密度×REST/環境係数</td>
+                </tr>
+                <tr>
+                  <td><strong style="color:#64748b">区分 D</strong></td>
+                  <td>データ不足（対象外）</td>
+                  <td><b>7市町（null）</b>：森林0〜39haの盆地平地（大和高田・田原本等）は比率算出除外</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:20px;justify-content:space-between">
+            <div class="card card--top-gold" style="gap:12px">
+              <h3 class="card-h3">1. シナリオ感度テスト（保守 4.59万〜高密度 8.12万頭）</h3>
+              <p class="body-p">
+                3シナリオ間で勢力階級が変動するのは <b>曽爾村</b>（鹿優勢↔帝国領）・<b>山添村</b>・<b>吉野町</b>（均衡↔鹿優勢）の3町村のみ。<b>残る36市町村（92.3%）は階級不変</b>です。
+              </p>
+            </div>
+
+            <div class="card card--top-violet" style="gap:12px">
+              <h3 class="card-h3">2. Red Teamが明示する2つの重要反実仮想</h3>
+              <ul style="padding-left:26px;display:flex;flex-direction:column;gap:10px;font-size:23px;color:#334155">
+                <li><b>大台ヶ原の低密度反映（5.6頭/km²）</b>：上北山村の150km²以上へ低密度を適用すると3,042頭(840%)となり、野迫川村(957%)と1位↔2位が交代します。</li>
+                <li><b>GIS・定数バグの是正完了</b>：v1.1にて五條市重心のポリゴン外逸脱、5kmメッシュ3町欠落、未根拠C地区120頭をすべて修正し自動検証PASS済み。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>出典：本プロジェクト Red Team 監査報告（docs/red-team-review.md &amp; docs/limitations.md）｜自動検証 verify_project.py 全PASS</span>
+          <span>09 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+グローバルVCが投資検討や技術評価で最も信頼するのは「データの限界と不確実性を隠さない誠実さ」です。
+私たちは「39市町村別の公式頭数は存在しない」という事実を隠さず、A〜Dの証拠区分を設けました。さらに独立Red Team監査により「上北山村の大台ヶ原低密度を広く反映すると野迫川村と首位が入れ替わる」といった反実仮想リスクまで検証し、五條市の重心バグや根拠不明定数をすべて是正しています。</aside>
+      </section>
+
+      <!-- SLIDE 10: VC INVESTMENT THESIS (Hybrid) -->
+      <section class="slide slide--dark" data-title="【投資仮説】大阪・京都45分圏：奈良は世界最先端の生態×人口リビングラボ">
+        <img src="assets/slide10_vc_living_lab.jpg" alt="吉野杉林の自律センサーと野生の鹿" class="slide-bg-photo" onerror="this.style.display='none'" />
+        <div class="slide-bg-scrim-full"></div>
+        <div class="slide-content-z" style="gap:26px">
+          <div class="slide-head">
+            <div style="display:flex;align-items:center;gap:16px">
+              <p class="eyebrow">09 // WHY GLOBAL VCs SHOULD COME TO NARA</p>
+              <span class="pill pill-hyp">※以下は調査事実に基づくVC向け事業・投資仮説</span>
+            </div>
+            <h2 class="slide-title">大阪・京都から45分 — 奈良は「人口減少×生物多様性×自律インフラ」の<span class="accent-gold-txt">実証実験都市</span>である</h2>
+          </div>
+
+          <div class="grid-2" style="gap:24px">
+            <div class="card card--glass card--top-cyan" style="gap:10px;padding:24px 28px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 class="card-h3" style="color:#38bdf8">1. Spatial &amp; Wildlife AI</h3>
+                <span class="pill pill-hyp">※投資仮説</span>
+              </div>
+              <p class="body-p"><b>課題事実：</b>県内で年間約1万頭を捕獲も目標1.6万頭に未達、人手による糞塊調査の死角も確認。</p>
+              <p class="body-p"><b>機会仮説：</b>カメラトラップRESTモデル×エッジAIによるリアルタイム動態計測・自動スマート罠の標準テストベッド化。</p>
+            </div>
+
+            <div class="card card--glass card--top-emerald" style="gap:10px;padding:24px 28px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 class="card-h3" style="color:#34d399">2. Forest Carbon &amp; Nature Tech</h3>
+                <span class="pill pill-hyp">※投資仮説</span>
+              </div>
+              <p class="body-p"><b>課題事実：</b>県土の76.9%（28.4万ha）が森林、吉野林業地帯で樹皮剥ぎ・下層植生衰退が継続。</p>
+              <p class="body-p"><b>機会仮説：</b>衛星LiDAR×地上センサーで鹿食害低減と森林炭素吸収・生物多様性クレジットを定量MRV化。</p>
+            </div>
+
+            <div class="card card--glass card--top-gold" style="gap:10px;padding:24px 28px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 class="card-h3" style="color:#fbbf24">3. Autonomous Rural Infrastructure</h3>
+                <span class="pill pill-hyp">※投資仮説</span>
+              </div>
+              <p class="body-p"><b>課題事実：</b>十津川村（672km²）に2,547人、上北山村（274km²）に362人という世界屈指の低人間密度山岳圏。</p>
+              <p class="body-p"><b>機会仮説：</b>規制緩和やドローン配送・自律モビリティ・遠隔医療を最小の社会的摩擦で実装できる先進過疎ラボ。</p>
+            </div>
+
+            <div class="card card--glass card--top-violet" style="gap:10px;padding:24px 28px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 class="card-h3" style="color:#c084fc">4. 1,300-Year Coexistence &amp; Bio-Economy</h3>
+                <span class="pill pill-hyp">※投資仮説</span>
+              </div>
+              <p class="body-p"><b>課題事実：</b>A/B保護区（観光神鹿1,687頭）とD管理区（捕獲・ジビエ処理施設等）が近接同居。</p>
+              <p class="body-p"><b>機会仮説：</b>人間の居住圏拡大に伴う世界のUrban-Wildlifeコンフリクト解決プロトコル＋ジビエ資源循環の輸出モデル。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>※本スライドの投資・事業機会は公開統計・調査データに基づく著者提案の仮説であり、収益性や自治体の事業採択を保証するものではありません。</span>
+          <span>10 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+ここからが海外VCの皆様へのご提案（投資仮説）です。
+先進国・新興国を問わず、これから世界が直面するのは「都市集中と地方の無人化」「気候変動と野生動物の都市進出」「自然資本（Nature Positive）の定量評価」です。
+奈良は京都・大阪からわずか45分でアクセスできるにも関わらず、これらすべてのフロンティア課題が最も濃縮されて存在しています。世界最大規模の課題が、最もアクセスしやすい場所にあるのです。</aside>
+      </section>
+
+      <!-- SLIDE 11: 3-DAY VC FIELD DUE DILIGENCE ROUTE -->
+      <section class="slide slide--light" data-title="3日間フィールドDDルート：奈良公園から鹿人比率1,395%の大台ヶ原へ">
+        <div class="slide-head">
+          <p class="eyebrow">10 // NARA FIELD DUE DILIGENCE CORRIDOR</p>
+          <h2 class="slide-title">南北100kmの3日間縦断視察で「1,300年の共生」から「鹿人比率1,395%」までを体感する</h2>
+        </div>
+
+        <div class="grid-3">
+          <div class="card card--top-cyan" style="justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <span class="pill pill-cyan">DAY 1：北部・都市と神鹿の境界</span>
+              <h3 class="card-h3">奈良公園(A/B) → 東部D管理地区</h3>
+              <p class="body-p"><b>アクセス：</b>京都・大阪から近鉄/JRで約45分、関空から約90分。</p>
+              <p class="body-p"><b>視察ポイント：</b>早朝の奈良公園で過去最多 <b>1,687頭</b> の都市共生を観察した直後、東へ車で20分移動し <b>184 km²</b> のD管理地区（田原・柳生：密度 15.5頭/km²）へ。同一市内の保護と管理の境界線を体感。</p>
+            </div>
+            <div style="background:#eef5fa;padding:16px;border-radius:12px;font-size:21px;font-weight:700;color:#0f6fa3">
+              Key Metric：奈良市計 4,539頭 / 人間 34.3万人
+            </div>
+          </div>
+
+          <div class="card card--top-violet" style="justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <span class="pill" style="background:#f3e8ff;color:#6d28d9">DAY 2：中南和・R&amp;Dと国境線</span>
+              <h3 class="card-h3">高取町(REST林) → 吉野 → 曽爾村</h3>
+              <p class="body-p"><b>視察ポイント：</b>森林技術センター研究が <b>30.15頭/km²</b> の超高密度を観測した高取町人工林から、日本有数の林業地・吉野（42.5%勢力均衡）を経て、人口減少で帝国領入りした <b>曽爾村（107.8%）</b> のススキ草原・高原境界へ。</p>
+            </div>
+            <div style="background:#f5f3ff;padding:16px;border-radius:12px;font-size:21px;font-weight:700;color:#6d28d9">
+              Key Metric：人工林密度 30.15頭/km² &amp; 過疎境界
+            </div>
+          </div>
+
+          <div class="card card--dark card--top-gold" style="justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <span class="pill pill-gold">DAY 3：奥吉野・鹿帝国の中枢</span>
+              <h3 class="card-h3" style="color:#ffffff">上北山村・大台ヶ原 → 十津川村</h3>
+              <p class="body-p"><b>視察ポイント：</b>鹿人比率県内1位 <b>上北山村（1,395.6% / 人間362人）</b> と環境省管理域「大台ヶ原（5.6〜10頭/km² 植生再生現場）」を視察。さらに日本最大の村 <b>十津川村（672km² / 推定1.3万頭）</b> で広域自律インフラの需要を検証。</p>
+            </div>
+            <div style="background:rgba(245,158,11,0.18);padding:16px;border-radius:12px;font-size:21px;font-weight:700;color:#fcd34d">
+              Key Metric：鹿人比率 1,395.6% / 森林率 96〜97%
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>※上記視察ルートは本調査の地理データに基づく提案工程です。自然環境保全区域や国有林への立入は各管理機関のルールに従ってください。</span>
+          <span>11 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+最後に、海外VCの皆様が実際に奈良へお越しになる際の「3日間フィールドDDルート」をご提案します。
+Day 1で京都・大阪からわずか45分で奈良公園とD管理区の境界を見て、Day 2でカメラAI実証地と曽爾村の越境ラインを通り、Day 3で人口362人の上北山村と大台ヶ原、十津川村へ入ります。南北わずか100kmの中に、歴史・都市テック・自然資本・ディープルーラルが凝縮された3日間になります。</aside>
+      </section>
+
+      <!-- SLIDE 12: SOURCES & LIVE DASHBOARD CTA -->
+      <section class="slide slide--dark" data-title="出典一覧＆インタラクティブ「鹿帝国勢力図」ライブ検証">
+        <div class="slide-head">
+          <p class="eyebrow">11 // PROVENANCE, LICENSES &amp; INTERACTIVE EXPLORATION</p>
+          <h2 class="slide-title">全データは一次統計へ追跡可能 — 戦略ダッシュボードで即座に検証できる</h2>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.32fr 0.68fr;">
+          <div class="card card--glass" style="padding:20px 24px;gap:10px;justify-content:center">
+            <h3 class="card-h3" style="font-size:25px;color:#fde68a">主要データ出典・基準年月日（参照日：2026-11-21）</h3>
+            <table class="slide-table slide-table-compact" style="font-size:19px">
+              <thead>
+                <tr>
+                  <th style="width:28%">データ項目</th>
+                  <th style="width:46%">出典機関・資料名</th>
+                  <th style="width:26%">基準年月日</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>39市町村 推計人口</b></td>
+                  <td>奈良県 統計分析課「奈良県推計人口調査（月報）」</td>
+                  <td class="mono">2026-10-01 (差0)</td>
+                </tr>
+                <tr>
+                  <td><b>国勢調査人口推移</b></td>
+                  <td>総務省統計局「国勢調査」（1980〜2025年確定値）</td>
+                  <td class="mono">2020-10 / 2025-10</td>
+                </tr>
+                <tr>
+                  <td><b>行政面積・境界GIS</b></td>
+                  <td>国土地理院 面積調 / 国土数値情報(N03-21_29_210101)</td>
+                  <td class="mono">2021-01-01行政界</td>
+                </tr>
+                <tr>
+                  <td><b>現況森林面積・林野率</b></td>
+                  <td>農林水産省「2020年農林業センサス」（奈良県283,671ha）</td>
+                  <td class="mono">2020-02-01 (差0)</td>
+                </tr>
+                <tr>
+                  <td><b>奈良公園の鹿頭数</b></td>
+                  <td>一般財団法人 奈良の鹿愛護会 毎年7月早朝目視調査</td>
+                  <td class="mono">2026-07-15/16 (1,687頭)</td>
+                </tr>
+                <tr>
+                  <td><b>奈良市・県管理計画</b></td>
+                  <td>奈良市第2次計画(D地区15.5頭/km²)・奈良県第7次計画(目標5.8万頭)</td>
+                  <td class="mono">FY2022–FY2026</td>
+                </tr>
+                <tr>
+                  <td><b>学術REST・大台ヶ原</b></td>
+                  <td>奈良県森林技術センター(高取30.15・野迫川14.07) / 環境省</td>
+                  <td class="mono">H13〜2020年代</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card card--dark" style="justify-content:space-between;border:2px solid #f59e0b">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <span class="pill pill-gold">LIVE INTERACTIVE TOOL</span>
+              <h3 class="card-h3" style="color:#ffffff">DEER EMPIRE NARA<br>戦略ダッシュボード</h3>
+              <p class="body-p">全39市町村の地図操作、5kmメッシュ（171区画）、3シナリオ＆What-If密度スライダー、4連動チャート、CSV出力をその場で操作して感度検証できます。</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <a href="../dashboard/index.html" class="hud-btn hud-btn-gold" style="justify-content:center;padding:16px 20px;font-size:24px;border-radius:12px">
+                🧊 3D立体ダッシュボードを開く →
+              </a>
+              <div style="display:flex;gap:10px;justify-content:center">
+                <a href="../../2d/dashboard/index.html" class="hud-btn" style="flex:1;justify-content:center;padding:10px 14px;font-size:16px">🗺️ 2D元版へ</a>
+                <a href="../../index.html" class="hud-btn" style="flex:1;justify-content:center;padding:10px 14px;font-size:16px">🏛️ 親ポータルへ</a>
+              </div>
+              <div style="font-size:19px;color:#94a3b8;text-align:center">
+                再現スクリプト: <code class="mono">scripts/build_deer_empire_data.py</code><br>
+                自動監査: <code class="mono">scripts/verify_project.py</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>DEER EMPIRE NARA — Thank you. Welcome to Nara, Japan.</span>
+          <span>12 / 12</span>
+        </div>
+        <aside class="speaker-notes">【発表者メモ】
+本資料のすべての統計・推定・算出式は公開リポジトリ内のスクリプトとドキュメント（docs/sources.md, red-team-review.md）に記録されており、右のボタンからインタラクティブなダッシュボードを開いて、39市町村の1つ1つをクリックして仮定を変更しながら検証いただけます。
+ぜひ近いうちに、京都・大阪から45分の「鹿帝国・奈良」の現地でお会いしましょう。ありがとうございました。</aside>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Presentation HUD -->
+  <nav class="deck-hud" aria-label="スライド操作バー">
+    <button class="hud-btn" id="btnPrev" title="前へ (←)">← 前へ</button>
+    <span class="hud-counter" id="hudCounter">01 / 12</span>
+    <button class="hud-btn" id="btnNext" title="次へ (→ / Space)">次へ →</button>
+    <button class="hud-btn" id="btnGrid" title="一覧 (G)">☷ 一覧</button>
+    <button class="hud-btn" id="btnNotes" title="発表者ノート (N)">📝 ノート</button>
+    <button class="hud-btn" id="btnFullscreen" title="全画面 (F)">⛶ 全画面</button>
+    <button class="hud-btn" id="btnPrint" title="PDF印刷 (P)">🖨️ PDF</button>
+    <a class="hud-btn" href="../../index.html">🏛️ ポータル</a>
+    <a class="hud-btn hud-btn-gold" href="../dashboard/index.html">🧊 3Dダッシュボードへ</a>
+    <a class="hud-btn" href="../../2d/slides/index.html">🗺️ 2D版</a>
+  </nav>
+
+  <!-- Speaker Notes Drawer -->
+  <aside class="notes-drawer" id="notesDrawer">
+    <h4>📝 発表者ノート（Speaker Notes）</h4>
+    <p id="notesBody"></p>
+  </aside>
+
+  <!-- Slide Overview Grid -->
+  <div class="grid-overlay" id="gridOverlay">
+    <div class="grid-overlay-head">
+      <h3 style="font-size:20px;color:#fde68a">📽️ 全12スライド一覧（クリックでジャンプ / Escで閉じる）</h3>
+      <button class="hud-btn" id="btnCloseGrid">✕ 閉じる</button>
+    </div>
+    <div class="thumb-grid" id="thumbGrid"></div>
+  </div>
+
+  <script src="slides_data.js"></script>
+  <script src="slides.js"></script>
+</body>
+</html>
